@@ -591,7 +591,7 @@ elif st.session_state.vista == "desmos":
     st.subheader("📐 Gráficas con Desmos")
 
     desmos_html = """
-    <div id="calculator" style="width: 1000%; height: 500px;"></div>
+    <div id="calculator" style="width: 100%; height: 500px;"></div>
     <script src="https://www.desmos.com/api/v1.12/calculator.js?apiKey=9bda5869329f43429dddd48875ee6168"></script>
     <script>
     var elt = document.getElementById('calculator');
@@ -604,4 +604,4 @@ elif st.session_state.vista == "desmos":
     </script>
     """
 
-    components.html(desmos_html, height=550)
+    components.html(desmos_html, height=700)
