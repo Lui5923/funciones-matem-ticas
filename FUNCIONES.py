@@ -541,14 +541,15 @@ elif st.session_state.vista == "ia":
         cantidad_quiz = st.slider("Número de preguntas", min_value=3, max_value=8, value=5, key="cantidad_quiz")
 
         if st.button("Generar preguntas de opción múltiple", key="generar_quiz"):
-            st.session_state.quiz_identificacion = generar_preguntas_identificacion(tipo_quiz, cantidad_quiz)
+            num_preguntas=st.session_state.get("cantidad_quiz", cantidad_quiz)
+            st.session_state.quiz_identificacion = generar_preguntas_identificacion(tipo_quiz, num_preguntas)
             st.session_state.quiz_respuestas = {}
 
         if "quiz_identificacion" in st.session_state and st.session_state.quiz_identificacion:
             preguntas = st.session_state.quiz_identificacion
 
             for i, pregunta in enumerate(preguntas):
-                st.markdown(f"### Pregunta {i + 9}")
+                st.markdown(f"### Pregunta {i + 1}")
                 st.write(pregunta["enunciado"])
 
                 respuesta = st.radio(
