@@ -510,7 +510,7 @@ elif st.session_state.vista == "ia":
     tab_ia, tab_quiz = st.tabs(["Problemas con IA", "Identifica la función"])
 
     with tab_ia:
-        opciones_finales = ["Todos"] + list(TIPOS_FUNCION)
+        opciones_finales = ["Todos"] + list(TIPOS_FUNCION, key="sb_tipo_funcion")
         tipo = st.selectbox("Elige el tipo de función", opciones_finales)
         cantidad = st.slider("Cantidad de ejercicios", min_value=3, max_value=10, value=5)
 
