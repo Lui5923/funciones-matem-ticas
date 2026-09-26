@@ -510,7 +510,7 @@ elif st.session_state.vista == "ia":
     tab_ia, tab_quiz = st.tabs(["Problemas con IA", "Identifica la función"])
 
     with tab_ia:
-        tipo = st.selectbox("Elige el tipo de función", ["Todos"],TIPO_FUNCION + TIPOS_FUNCION)
+        tipo = st.selectbox("Elige el tipo de función", ["Todos"] + list(TIPOS_FUNCION))
         cantidad = st.slider("Cantidad de ejercicios", min_value=3, max_value=10, value=5)
 
         if st.button("Generar con IA"):
