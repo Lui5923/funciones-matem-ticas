@@ -740,7 +740,6 @@ for key in api_keys:
             respuesta = modelo.generate_content(prompt)
             texto_limpio = respuesta.text.replace("```json", "").replace("```", "").strip()
             preguntas_dict = json.loads(texto_limpio)
-            return preguntas_dict
     except Exception as e:
            print(f"Error con una clave, intentando respaldo... {e}")
            return []
