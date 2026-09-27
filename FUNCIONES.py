@@ -730,18 +730,18 @@ elif st.session_state.vista == "ia":
             "respuesta": "La opción correcta exacta que coincide con una de las opciones"
         }}
     ]
-    No incluyas texto adicional ni bloques de Markdown fuera del JSON."""
-for key in api_keys:
-    if not key:
-        continue
-    try:
-            genai.configure(api_key=key)
-            modelo = genai.GenerativeModel("gemini-3-flash")
-            respuesta = modelo.generate_content(prompt)
-            texto_limpio = respuesta.text.replace("```json", "").replace("```", "").strip()
-            preguntas_dict = json.loads(texto_limpio)
-    except Exception as e:
-        st.error(f"Error: {error}")
+    No incluyas texto adicional ni bloques de Markdown fuera del JSON.""
+            for key in api_keys:
+                if not key:
+            continue
+            try:
+                genai.configure(api_key=key)
+                modelo = genai.GenerativeModel("gemini-3-flash")
+                respuesta = modelo.generate_content(prompt)
+                texto_limpio = respuesta.text.replace("```json", "").replace("```", "").strip()
+                preguntas_dict = json.loads(texto_limpio)
+            except Exception as e:
+                st.error(f"Error: {error}")
 # ==========================================================
 #  OPCIÓN 7: GRÁFICAS CON DESMOS
 # ==========================================================
