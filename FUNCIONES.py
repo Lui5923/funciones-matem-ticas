@@ -721,7 +721,6 @@ elif st.session_state.vista == "ia":
         key="slider_cant_identifica"
     )
         if st.button("Generar ejercicios de identificación"):
-            
     def generar_ejercicios_identificacion(tipo, cantidad):
             api_keys = [
                 st.secrets.get("GEMINI_API_KEY_1"),
