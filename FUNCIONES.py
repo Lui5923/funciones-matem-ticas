@@ -690,7 +690,7 @@ elif st.session_state.vista == "ia":
               genai.configure(api_key=st.secrets["GEMINI_API_KEY_1"])
               modelo = genai.GenerativeModel("gemini-3-flash-preview")
 
-            prompt = (
+              prompt = (
               f"Genera {cantidad} situaciones problema de la vida real que se puedan modelar "
               f"con una {tipo.lower()}. "
               "Cada situación debe estar bien contextualizada (un escenario claro, con datos "
