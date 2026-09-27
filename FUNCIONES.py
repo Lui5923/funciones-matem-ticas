@@ -15,7 +15,6 @@ TIPOS_FUNCION = [
     "Función racional",
     "Función exponencial",
     "Función valor absoluto",
-    "Función logarítmica",
 ]
 
 
@@ -81,12 +80,6 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=5):
             {
                 "enunciado": "La distancia de un punto a cero se modela con d(x) = |x - 3|.",
                 "respuesta": "Función valor absoluto",
-            },
-        ],
-        "Función logarítmica": [
-            {
-                "enunciado": "La intensidad del sonido se mide con una escala logarítmica, como I(x) = log(x + 1).",
-                "respuesta": "Función logarítmica",
             },
         ],
     }
