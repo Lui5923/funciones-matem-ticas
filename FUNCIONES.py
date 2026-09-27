@@ -718,7 +718,7 @@ elif st.session_state.vista == "ia":
             api_keys = [
                 st.secrets.get("GEMINI_API_KEY_1"),
                 st.secrets.get("GEMINI_API_KEY_2")
-    ]
+            ]
               prompt = (f"""
               Actúa como un profesor experto en matemáticas. Genera un conjunto de {cantidad} preguntas de opción múltiple 
               sobre el tema: "{tipo_quiz}". Cada pregunta debe tener un enunciado claro (con un contexto de la vida real diferente y variado), 4 opciones de respuesta (A, B, C, D) y la respuesta correcta.
