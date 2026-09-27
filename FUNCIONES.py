@@ -500,7 +500,7 @@ elif st.session_state.vista == "ia":
         if st.button("Generar con IA"):
             try:
                 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-                modelo = genai.GenerativeModel("gemini-1.5-flash")
+                modelo = genai.GenerativeModel("gemini-3-flash")
 
                 prompt = (
                     f"Genera {cantidad} situaciones problema de la vida real que se puedan modelar "
