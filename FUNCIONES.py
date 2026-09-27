@@ -709,42 +709,82 @@ elif st.session_state.vista == "ia":
               st.error(f"Error: {error}")
 
 
-    def generar_preguntas_identificacion(tipo_quiz, cantidad):
-    # Usamos tus llaves de respaldo configuradas
-                api_keys = [
-                    st.secrets.get("GEMINI_API_KEY_1"),
-                    st.secrets.get("GEMINI_API_KEY_2")
+with tab_identifica:
+    st.subheader("🔍 Práctica: Identifica la función")
+    
+    # Selector específico para las funciones matemáticas
+    tipo_funcion = st.selectbox(
+        "Selecciona la familia de función a practicar", 
+        ["Todas"] + TIPOS_FUNCION,
+        key="select_tipo_funcion"
+    )
+    cantidad_ejercicios = st.slider(
+        "Número de ejercicios", 
+        min_value=3, max_value=8, value=5, 
+        key="slider_cant_identifica"
+    )
+
+    if st.button("Generar ejercicios de identificación", key="btn_gen_identifica"):
+        
+        def generar_ejercicios_identificacion(tipo, cantidad):
+            api_keys = [
+                st.secrets.get("GEMINI_API_KEY_1"),
+                st.secrets.get("GEMINI_API_KEY_2")
             ]
-                prompt = """
-                Actúa como un profesor experto en matemáticas. Genera un conjunto de {cantidad} preguntas de opción múltiple
-                sobre el tema: "{tipo_quiz}". Cada pregunta debe tener un enunciado claro (con un contexto de la vida real diferente y variado), 4 opciones de respuesta (A, B, C, D) y la respuesta correcta.
-                Devuelve la respuesta estrictamente en un formato JSON que sea una lista de objetos, donde cada objeto tenga esta estructura exacta:
-    [
-        {{
-                 "enunciado": "Texto del problema...",
-                 "opciones": ["Opción 1", "Opción 2", "Opción 3", "Opción 4"]",
-                 "respuesta": "La opción correcta exacta que coincide con una de las opciones"
-        }}
-    ]
-    No incluyas texto adicional ni bloques de Markdown fuera del JSON.
+            
+            prompt = """
+            Actúa como un profesor experto en matemáticas. Genera un conjunto de {cantidad} ejercicios prácticos 
+            donde el estudiante de secundaria deba **identificar la función** correspondiente 
+            basándose en su ecuación, tabla de valores o descripción gráfica.
+            El tema seleccionado es: "{tipo}".
+            
+            Devuelve la respuesta estrictamente en un formato JSON que sea una lista de objetos con esta estructura exacta:
+            [
+              {{
+                "enunciado": "Descripción del problema o ecuación a identificar...",
+                "opciones": ["Función lineal", "Función cuadrática", "Función exponencial", "Función constante"],
+                "respuesta": "La opción correcta exacta"
+              }}
+            ]
+            No incluyas texto adicional ni bloques de Markdown fuera del JSON.
             """
-                for key in api_keys:
-                    if not key:
-                        continue
-                        try:
-                            genai.configure(api_key=st.secrets[GEMINI_API_KEY_2])
-                            modelo = genai.GenerativeModel("gemini-3-flash")
-                            respuesta = modelo.generate_content(prompt)
-                            texto_limpio = respuesta.text.replace("```json", "").replace("```", "").strip()
-                            preguntas_dict = json.loads(texto_limpio)
-                        except Exception as e:
-                            st.error(f"Error: {error}")
-                        with tab_quiz:
-                            tipo_quiz = st.selectbox("Selecciona el tipo para practicar", ["Todos"] + TIPOS_FUNCION)
-                            cantidad_quiz = st.slider("Número de preguntas", min_value=3, max_value=8, value=5, key="cantidad_quiz")
-                            if st.button("Generar preguntas de opción múltiple", key="generar_quiz"):
-                                st.session_state.quiz_identificacion = generar_preguntas_identificacion(tipo_quiz, cantidad_quiz)
-                                st.session_state.quiz_respuestas = {}
+            
+            for key in api_keys:
+                if not key:
+                    continue
+                try:
+                    genai.configure(api_key=key)
+                    modelo = genai.GenerativeModel("gemini-1.5-flash")
+                    respuesta = modelo.generate_content(prompt)
+                    texto_limpio = respuesta.text.replace("```json", "").replace("```", "").strip()
+                    return json.loads(texto_limpio)
+                except Exception as e:
+                    st.error(f"Error: {error}")
+                    return []
+
+        st.session_state.quiz_identificacion = generar_ejercicios_identificacion(tipo_funcion, cantidad_ejercicios)
+        st.session_state.quiz_respuestas = {}
+
+    # Mostrar y evaluar los ejercicios en pantalla
+    if "quiz_identificacion" in st.session_state and st.session_state.quiz_identificacion:
+        st.write("---")
+        for i, item in enumerate(st.session_state.quiz_identificacion):
+            st.markdown(f"**Ejercicio {i+1}:** {item['enunciado']}")
+            
+            opcion_elegida = st.radio(
+                f"¿A qué tipo de función corresponde el ejercicio {i+1}?",
+                item['opciones'],
+                key=f"radio_identifica_{i}"
+            )
+            
+            if st.button(f"Comprobar ejercicio {i+1}", key=f"verificar_identifica_{i}"):
+                if opcion_elegida == item['respuesta']:
+                    st.success("¡Excelente! Identificaste correctamente la función 🎉")
+                else:
+                    st.error(f"Incorrecto. La respuesta correcta es: {item['respuesta']}")
+            
+            st.write("")
+            
 # ==========================================================
 #  OPCIÓN 7: GRÁFICAS CON DESMOS
 # ==========================================================
