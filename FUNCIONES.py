@@ -257,7 +257,8 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=8):
                 "enunciado": "La ganancia o pérdida absoluta en la bolsa para un activo específico se describe por G(x) = |2x - 10|.",
                 "respuesta": "Función valor absoluto",
             },
-        }
+        ]
+    }
 
     # Función auxiliar para generar opciones incluyendo distractores
     def crear_opciones(respuesta_correcta):
