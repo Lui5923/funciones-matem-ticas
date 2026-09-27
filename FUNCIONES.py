@@ -715,6 +715,7 @@ elif st.session_state.vista == "ia":
         
         def generar_preguntas_identificacion(tipo_quiz, cantidad):
     # Usamos tus llaves de respaldo configuradas
+            if st.button("Generar preguntas"):
             api_keys = [
                 st.secrets.get("GEMINI_API_KEY_1"),
                 st.secrets.get("GEMINI_API_KEY_2")
