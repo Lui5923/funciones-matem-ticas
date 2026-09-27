@@ -687,7 +687,7 @@ elif st.session_state.vista == "ia":
 
         if st.button("Generar con IA"):
             try:
-                genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+                genai.configure(api_key=st.secrets["GEMINI_API_KEY_1"],["GEMINI_API_KEY_2"])
                 modelo = genai.GenerativeModel("gemini-3-flash-preview")
 
                 prompt = (
