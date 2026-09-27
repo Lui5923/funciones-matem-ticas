@@ -747,9 +747,9 @@ for i, pregunta in enumerate(preguntas):
     st.write(f"Pregunta {i + 1}: {estado}. Respuesta correcta: {pregunta['respuesta']}")
 
     if aciertos == total:
-    st.balloons()
+        st.balloons()
     else:
-    st.info("Genera un conjunto de preguntas para practicar la identificación de tipos de función.")
+        st.info("Genera un conjunto de preguntas para practicar la identificación de tipos de función.")
             
 # ==========================================================
 #  OPCIÓN 7: GRÁFICAS CON DESMOS
