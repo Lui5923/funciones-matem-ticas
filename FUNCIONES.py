@@ -737,11 +737,11 @@ elif st.session_state.vista == "ia":
         try:
             genai.configure(api_key=key)
     # Usamos el modelo flash que ya tienes en tu app
-    modelo = genai.GenerativeModel("gemini-3-flash")
-    respuesta = modelo.generate_content(prompt)
+            modelo = genai.GenerativeModel("gemini-3-flash")
+            respuesta = modelo.generate_content(prompt)
     
     # Limpiamos el texto por si la IA devuelve marcas de código markdown
-    texto_limpio = respuesta.text.replace("```json", "").replace("```", "").strip()
+            texto_limpio = respuesta.text.replace("```json", "").replace("```", "").strip()
             
             # Convertimos el texto de la IA en una lista de Python utilizable
             preguntas_dict = json.loads(texto_limpio)
