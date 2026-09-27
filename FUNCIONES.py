@@ -108,7 +108,7 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=5):
         return []
 
     seleccion = random.sample(preguntas, k=min(cantidad, len(preguntas)))
-)
+
     return [
         {
             "tipo": tipo_objetivo,
