@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import streamlit.components.v1 as components
 import google.generativeai as genai
+import json
 
 st.set_page_config(page_title="Funciones Matemáticas", page_icon="📊", layout="centered")
 
@@ -711,48 +712,63 @@ elif st.session_state.vista == "ia":
         tipo_quiz = st.selectbox("Selecciona el tipo para practicar", ["Todos"] + TIPOS_FUNCION)
         cantidad_quiz = st.slider("Número de preguntas", min_value=3, max_value=8, value=5, key="cantidad_quiz")
         
-        if st.button("Generar preguntas de opción múltiple", key="generar_quiz"):
-            st.session_state.quiz_identificacion = generar_preguntas_identificacion(tipo_quiz, cantidad_quiz)
-            st.session_state.quiz_respuestas = {}
-
-        if "quiz_identificacion" in st.session_state and st.session_state.quiz_identificacion:
-            preguntas = st.session_state.quiz_identificacion
-
-            for i, pregunta in enumerate(preguntas):
-                st.markdown(f"### Pregunta {i + 1}")
-                st.write(pregunta["enunciado"])
-
-                respuesta = st.radio(
-                    "Selecciona la respuesta correcta:",
-                    pregunta["opciones"],
-                    index=None,
-                    key=f"pregunta_{i}",
+        
+        def generar_preguntas_identificacion(tipo_quiz, cantidad):
+    # Usamos tus llaves de respaldo configuradas
+            api_keys = [
+                st.secrets.get("GEMINI_API_KEY_1"),
+                st.secrets.get("GEMINI_API_KEY_2")
+    ]
+                prompt = (f"""
+                Actúa como un profesor experto en matemáticas. Genera un conjunto de {cantidad} preguntas de opción múltiple 
+                sobre el tema: "{tipo_quiz}".
+                Cada pregunta debe tener un enunciado claro (con un contexto de la vida real diferente y variado), 4 opciones de respuesta (A, B, C, D) y la respuesta correcta.
+                Devuelve la respuesta estrictamente en un formato JSON que sea una lista de objetos, donde cada objeto tenga esta estructura exacta:
                 )
+    [
+        {{
+            "enunciado": "Texto del problema...",
+            "opciones": ["Opción 1", "Opción 2", "Opción 3", "Opción 4"],
+            "respuesta": "La opción correcta exacta que coincide con una de las opciones"
+        }}
+    ]
+    No incluyas texto adicional ni bloques de Markdown fuera del JSON.
+    """
+    for key in api_keys:
+    if not key:
+        continue
+        try:
+        genai.configure(api_key=key)
+    # Usamos el modelo flash que ya tienes en tu app
+    modelo = genai.GenerativeModel("gemini-1.5-flash")
+    respuesta = modelo.generate_content(prompt)
+    
+    # Limpiamos el texto por si la IA devuelve marcas de código markdown
+    texto_limpio = respuesta.text.replace("```json", "").replace("```", "").strip()
+            
+            # Convertimos el texto de la IA en una lista de Python utilizable
+            preguntas_dict = json.loads(texto_limpio)
+            return preguntas_dict
+            
+        except Exception as e:
+            print(f"Error con una clave, intentando respaldo... {e}")
+            
+    # Si falla todo, devolvemos una lista vacía o de respaldo básica
+        return []
 
-                if respuesta is not None:
-                    st.session_state.quiz_respuestas[i] = respuesta
 
-            if st.button("Corregir respuestas", key="corregir_quiz"):
-                aciertos = 0
-                total = len(preguntas)
 
-                for i, pregunta in enumerate(preguntas):
-                    respuesta_usuario = st.session_state.get(f"pregunta_{i}")
-                    if respuesta_usuario == pregunta["respuesta"]:
-                        aciertos += 1
 
-                st.success(f"Tu resultado: {aciertos}/{total} respuestas correctas.")
 
-                for i, pregunta in enumerate(preguntas):
-                    respuesta_usuario = st.session_state.get(f"pregunta_{i}")
-                    estado = "✅ Correcta" if respuesta_usuario == pregunta["respuesta"] else "❌ Incorrecta"
-                    st.write(f"Pregunta {i + 1}: {estado}. Respuesta correcta: {pregunta['respuesta']}")
 
-                if aciertos == total:
-                    st.balloons()
 
-        else:
-            st.info("Genera un conjunto de preguntas para practicar la identificación de tipos de función.")
+
+
+
+
+
+
+
 
 # ==========================================================
 #  OPCIÓN 7: GRÁFICAS CON DESMOS
