@@ -736,7 +736,7 @@ elif st.session_state.vista == "ia":
                     if not key:
                         continue
                         try:
-                            genai.configure(api_key=st.secrets(GEMINI_API_KEY_2)
+                            genai.configure(api_key=st.secrets[GEMINI_API_KEY_2])
                             modelo = genai.GenerativeModel("gemini-3-flash")
                             respuesta = modelo.generate_content(prompt)
                             texto_limpio = respuesta.text.replace("```json", "").replace("```", "").strip()
