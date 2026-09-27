@@ -741,7 +741,7 @@ for key in api_keys:
             texto_limpio = respuesta.text.replace("```json", "").replace("```", "").strip()
             preguntas_dict = json.loads(texto_limpio)
     except Exception as e:
-    return []
+        st.error(f"Error: {error}")
 # ==========================================================
 #  OPCIÓN 7: GRÁFICAS CON DESMOS
 # ==========================================================
