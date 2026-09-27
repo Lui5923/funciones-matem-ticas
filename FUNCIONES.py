@@ -728,9 +728,8 @@ elif st.session_state.vista == "ia":
                     index=None,
                     key=f"pregunta_{i}",
                 )
-            if respuesta is not None:
+        if respuesta is not None:
                 st.session_state.quiz_respuestas[i] = respuesta
-
         if st.button("Corregir respuestas", key="corregir_quiz"):
             aciertos = 0
             total = len(preguntas)
@@ -740,7 +739,7 @@ elif st.session_state.vista == "ia":
         if respuesta_usuario == pregunta["respuesta"]:
             aciertos += 1
             st.success(f"Tu resultado: {aciertos}/{total} respuestas correctas.")
-    for i, pregunta in enumerate(preguntas):
+for i, pregunta in enumerate(preguntas):
                   respuesta_usuario = st.session_state.get(f"pregunta_{i}")
                   estado = "✅ Correcta" if respuesta_usuario == pregunta["respuesta"] else "❌ Incorrecta"
                   st.write(f"Pregunta {i + 1}: {estado}. Respuesta correcta: {pregunta['respuesta']}")
