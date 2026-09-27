@@ -709,7 +709,7 @@ elif st.session_state.vista == "ia":
               st.error(f"Error: {error}")
 
 
-            def generar_preguntas_identificacion(tipo_quiz, cantidad):
+    def generar_preguntas_identificacion(tipo_quiz, cantidad):
     # Usamos tus llaves de respaldo configuradas
                 api_keys = [
                     st.secrets.get("GEMINI_API_KEY_1"),
