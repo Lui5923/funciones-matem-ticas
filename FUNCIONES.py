@@ -731,7 +731,7 @@ elif st.session_state.vista == "ia":
             "respuesta": "La opción correcta exacta que coincide con una de las opciones"
         }}
     ]
-    No incluyas texto adicional ni bloques de Markdown fuera del JSON.""
+    No incluyas texto adicional ni bloques de Markdown fuera del JSON."""
     for key in api_keys:
         if not key:
             continue
