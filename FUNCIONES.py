@@ -19,104 +19,93 @@ TIPOS_FUNCION = [
 
 
 def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=5):
-    plantillas = {
-        "Función constante": [
-            {
-                "enunciado": "Un club cobra una tarifa fija de 25 pesos por entrar, sin importar la cantidad de personas que asistan ese día.",
-                "respuesta": "Función constante",
-            },
-            {
-                "enunciado": "La mensualidad de un servicio de internet cuesta siempre 300 pesos, aunque el usuario navegue más o menos.",
-                "respuesta": "Función constante",
-            },
-        ],
-        "Función lineal": [
-            {
-                "enunciado": "Un taxi cobra 8 pesos por banderazo más 3 pesos por cada kilómetro recorrido.",
-                "respuesta": "Función lineal",
-            },
-            {
-                "enunciado": "Una impresora entrega 12 hojas por minuto, así que la cantidad de hojas impresas crece de manera constante con el tiempo.",
-                "respuesta": "Función lineal",
-            },
-        ],
-        "Función cuadrática": [
-            {
-                "enunciado": "Un jardín rectangular tiene perímetro fijo y su área depende del ancho x como A(x) = x(20 - x).",
-                "respuesta": "Función cuadrática",
-            },
-            {
-                "enunciado": "La altura de un objeto lanzado al aire se modela con h(t) = -5t² + 30t + 2.",
-                "respuesta": "Función cuadrática",
-            },
-        ],
-        "Función cúbica": [
-            {
-                "enunciado": "El volumen de una caja abierta se calcula con V(x) = x(18 - 2x)², donde x representa el recorte de cada esquina.",
-                "respuesta": "Función cúbica",
-            },
-            {
-                "enunciado": "El volumen de un cubo se expresa como V(l) = l³, donde l es la longitud de la arista.",
-                "respuesta": "Función cúbica",
-            },
-        ],
-        "Función racional": [
-            {
-                "enunciado": "El costo promedio por unidad de un producto se describe con C(x) = 120/(x + 4) + 6.",
-                "respuesta": "Función racional",
-            },
-            {
-                "enunciado": "La velocidad promedio de un viaje depende de la distancia y el tiempo mediante v = 150/(t + 5).",
-                "respuesta": "Función racional",
-            },
-        ],
-        "Función exponencial": [
-            {
-                "enunciado": "Una colonia de bacterias duplica su población cada hora, por lo que P(t) = 5·2^t.",
-                "respuesta": "Función exponencial",
-            },
-        ],
-        "Función valor absoluto": [
-            {
-                "enunciado": "La distancia de un punto a cero se modela con d(x) = |x - 3|.",
-                "respuesta": "Función valor absoluto",
-            },
-        ],
-    }
-
-    # Función auxiliar para generar opciones incluyendo distractores
-    def crear_opciones(respuesta_correcta):
-        distractores = [tf for tf in TIPOS_FUNCION if tf != respuesta_correcta]
-        opciones = random.sample(distractores, 3) + [respuesta_correcta]
-        random.shuffle(opciones)
-        return opciones
-
-    if tipo_objetivo == "Todos":
-        preguntas = []
-        for tipo, lista in plantillas.items():
-            for item in lista:
-                preguntas.append({
-                    "tipo": tipo,
-                    **item,
-                    "opciones": crear_opciones(item["respuesta"])
-                })
-        random.shuffle(preguntas)
-        return preguntas[:cantidad]
-
-    preguntas = plantillas.get(tipo_objetivo, [])
-    if not preguntas:
+    """Genera preguntas usando IA para garantizar variedad y cantidad exacta."""
+    
+    try:
+        genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+        modelo = genai.GenerativeModel("gemini-1.5-flash")
+        
+        if tipo_objetivo == "Todos":
+            prompt = (
+                f"Genera EXACTAMENTE {cantidad} problemas de identificación de tipos de funciones matemáticas. "
+                "Cada problema debe ser un escenario real de la vida cotidiana que se pueda modelar con UNO de estos tipos: "
+                "Función constante, Función lineal, Función cuadrática, Función cúbica, Función racional, "
+                "Función exponencial, Función valor absoluto, Función logarítmica. "
+                "\n\nPara cada problema, devuelve EXACTAMENTE en este formato (sin variaciones):\n"
+                "PROBLEMA: [descripción del escenario]\n"
+                "TIPO: [el tipo de función correcto]\n"
+                "---\n"
+                "\nAsegúrate de que cada tipo de función aparezca DISTRIBUIDO entre los problemas. "
+                "Números pares de problemas = dos tipos de función solo. Números impares = variación más distribuida. "
+                "Escribe en español claro y accesible para estudiantes de secundaria."
+            )
+        else:
+            prompt = (
+                f"Genera EXACTAMENTE {cantidad} problemas diferentes que se modelan con una {tipo_objetivo.lower()}. "
+                "Cada problema debe ser un escenario real y diferente de los demás. "
+                "\n\nPara cada problema, devuelve EXACTAMENTE en este formato (sin variaciones):\n"
+                "PROBLEMA: [descripción del escenario]\n"
+                "TIPO: {tipo_objetivo}\n"
+                "---\n"
+                "\nEscribe en español claro y accesible para estudiantes de secundaria."
+            )
+        
+        respuesta = modelo.generate_content(prompt)
+        texto = respuesta.text
+        
+        # Parsear la respuesta
+        problemas = []
+        bloques = texto.split("---")
+        
+        for bloque in bloques:
+            bloque = bloque.strip()
+            if not bloque:
+                continue
+            
+            lineas = bloque.split("\n")
+            problema_texto = None
+            tipo_respuesta = None
+            
+            for linea in lineas:
+                if linea.startswith("PROBLEMA:"):
+                    problema_texto = linea.replace("PROBLEMA:", "").strip()
+                elif linea.startswith("TIPO:"):
+                    tipo_respuesta = linea.replace("TIPO:", "").strip()
+            
+            if problema_texto and tipo_respuesta:
+                # Validar que el tipo sea correcto
+                tipo_limpio = tipo_respuesta.lower().strip()
+                tipo_valido = None
+                
+                for tf in TIPOS_FUNCION:
+                    if tf.lower() in tipo_limpio or tipo_limpio in tf.lower():
+                        tipo_valido = tf
+                        break
+                
+                if tipo_valido:
+                    # Generar opciones con distractores
+                    distractores = [t for t in TIPOS_FUNCION if t != tipo_valido]
+                    opciones = random.sample(distractores, min(3, len(distractores)))
+                    opciones.append(tipo_valido)
+                    random.shuffle(opciones)
+                    
+                    problemas.append({
+                        "tipo": tipo_valido,
+                        "enunciado": problema_texto,
+                        "respuesta": tipo_valido,
+                        "opciones": opciones
+                    })
+        
+        # Si no se parsean suficientes problemas, retornar lo que se pudo generar
+        if len(problemas) > 0:
+            return problemas[:cantidad]
+        else:
+            st.error("No se pudieron generar problemas válidos. Intenta nuevamente.")
+            return []
+    
+    except Exception as e:
+        st.error(f"Error al generar preguntas con IA: {e}")
         return []
-
-    seleccion = random.sample(preguntas, k=min(cantidad, len(preguntas)))
-
-    return [
-        {
-            "tipo": tipo_objetivo,
-            **item,
-            "opciones": crear_opciones(item["respuesta"])
-        }
-        for item in seleccion
-    ]
 
 
 # ==========================================================
@@ -511,7 +500,7 @@ elif st.session_state.vista == "ia":
         if st.button("Generar con IA"):
             try:
                 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-                modelo = genai.GenerativeModel("gemini-3-flash-preview")
+                modelo = genai.GenerativeModel("gemini-1.5-flash")
 
                 prompt = (
                     f"Genera {cantidad} situaciones problema de la vida real que se puedan modelar "
@@ -532,51 +521,59 @@ elif st.session_state.vista == "ia":
                 st.error(f"Error: {error}")
 
     with tab_quiz:
-        tipo_quiz = st.selectbox("Selecciona el tipo para practicar", ["Todos"] + TIPOS_FUNCION)
-        cantidad_quiz = st.slider("Número de preguntas", min_value=3, max_value=8, value=5, key="cantidad_quiz")
+        st.write("### 📝 Quiz: Identifica el tipo de función")
+        st.write("Generado con IA - respuestas ilimitadas")
+        
+        tipo_quiz = st.selectbox("Selecciona el tipo para practicar", ["Todos"] + TIPOS_FUNCION, key="tipo_quiz_select")
+        cantidad_quiz = st.slider("Número de preguntas", min_value=3, max_value=10, value=5, key="cantidad_quiz_slider")
         
         if st.button("Generar preguntas de opción múltiple", key="generar_quiz"):
-            st.session_state.quiz_identificacion = generar_preguntas_identificacion(tipo_quiz, cantidad_quiz)
-            st.session_state.quiz_respuestas = {}
-
+            with st.spinner("Generando preguntas con IA..."):
+                st.session_state.quiz_identificacion = generar_preguntas_identificacion(tipo_quiz, cantidad_quiz)
+                st.session_state.quiz_respuestas = {}
+        
         if "quiz_identificacion" in st.session_state and st.session_state.quiz_identificacion:
             preguntas = st.session_state.quiz_identificacion
-
-            for i, pregunta in enumerate(preguntas):
-                st.markdown(f"### Pregunta {i + 1}")
-                st.write(pregunta["enunciado"])
-
-                respuesta = st.radio(
-                    "Selecciona la respuesta correcta:",
-                    pregunta["opciones"],
-                    index=None,
-                    key=f"pregunta_{i}",
-                )
-
-                if respuesta is not None:
-                    st.session_state.quiz_respuestas[i] = respuesta
-
-            if st.button("Corregir respuestas", key="corregir_quiz"):
-                aciertos = 0
-                total = len(preguntas)
-
+            
+            if len(preguntas) == 0:
+                st.warning("No se pudieron generar preguntas. Intenta nuevamente.")
+            else:
+                st.success(f"✅ Se generaron {len(preguntas)} preguntas")
+                
                 for i, pregunta in enumerate(preguntas):
-                    respuesta_usuario = st.session_state.get(f"pregunta_{i}")
-                    if respuesta_usuario == pregunta["respuesta"]:
-                        aciertos += 1
+                    st.markdown(f"### Pregunta {i + 1}")
+                    st.write(pregunta["enunciado"])
 
-                st.success(f"Tu resultado: {aciertos}/{total} respuestas correctas.")
+                    respuesta = st.radio(
+                        "Selecciona la respuesta correcta:",
+                        pregunta["opciones"],
+                        index=None,
+                        key=f"pregunta_{i}",
+                    )
 
-                for i, pregunta in enumerate(preguntas):
-                    respuesta_usuario = st.session_state.get(f"pregunta_{i}")
-                    estado = "✅ Correcta" if respuesta_usuario == pregunta["respuesta"] else "❌ Incorrecta"
-                    st.write(f"Pregunta {i + 1}: {estado}. Respuesta correcta: {pregunta['respuesta']}")
+                    if respuesta is not None:
+                        st.session_state.quiz_respuestas[i] = respuesta
 
-                if aciertos == total:
-                    st.balloons()
+                if st.button("Corregir respuestas", key="corregir_quiz"):
+                    aciertos = 0
+                    total = len(preguntas)
 
+                    for i, pregunta in enumerate(preguntas):
+                        respuesta_usuario = st.session_state.get(f"pregunta_{i}")
+                        if respuesta_usuario == pregunta["respuesta"]:
+                            aciertos += 1
+
+                    st.success(f"Tu resultado: {aciertos}/{total} respuestas correctas.")
+
+                    for i, pregunta in enumerate(preguntas):
+                        respuesta_usuario = st.session_state.get(f"pregunta_{i}")
+                        estado = "✅ Correcta" if respuesta_usuario == pregunta["respuesta"] else "❌ Incorrecta"
+                        st.write(f"Pregunta {i + 1}: {estado}. Respuesta correcta: {pregunta['respuesta']}")
+
+                    if aciertos == total:
+                        st.balloons()
         else:
-            st.info("Genera un conjunto de preguntas para practicar la identificación de tipos de función.")
+            st.info("Haz clic en 'Generar preguntas de opción múltiple' para comenzar.")
 
 # ==========================================================
 #  OPCIÓN 7: GRÁFICAS CON DESMOS
