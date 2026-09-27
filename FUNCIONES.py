@@ -23,7 +23,7 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=5):
     
     try:
         genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-        modelo = genai.GenerativeModel("gemini-1.5-flash")
+        modelo = genai.GenerativeModel("gemini-3-flash")
         
         if tipo_objetivo == "Todos":
             prompt = (
