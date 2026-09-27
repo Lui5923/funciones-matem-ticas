@@ -705,11 +705,8 @@ def generar_con_respaldo(prompt):
             respuesta = modelo.generate_content(prompt)
             return respuesta.text
         except Exception as e:
-            print(f"Falló la clave {i+1}, intentando con la siguiente... Error: {e}")
-            
-    return "Error: Ninguna de las claves pudo procesar la solicitud en este momento."
-
-                prompt = (
+            return "Error: Ninguna de las claves pudo procesar la solicitud en este momento."
+            prompt = (
                     f"Genera {cantidad} situaciones problema de la vida real que se puedan modelar "
                     f"con una {tipo.lower()}. "
                     "Cada situación debe estar bien contextualizada (un escenario claro, con datos "
@@ -720,7 +717,7 @@ def generar_con_respaldo(prompt):
                     "Numera cada situación del 1 al "
                     f"{cantidad}. "
                     "Escribe en texto plano, sin asteriscos, sin emojis, sin formato markdown."
-                )
+            )
 
                 r = modelo.generate_content(prompt)
                 st.write(r.text)
