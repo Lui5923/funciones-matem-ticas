@@ -721,8 +721,8 @@ elif st.session_state.vista == "ia":
         key="slider_cant_identifica"
     )
         if st.button("Generar ejercicios de identificación"):
-              st.session_state.quiz_identificacion = generar_ejercicios_identificacion(tipo_funcion, cantidad_ejercicios)
-                    st.session_state.quiz_respuestas = {}
+            st.session_state.quiz_identificacion = generar_ejercicios_identificacion(tipo_funcion, cantidad_ejercicios)
+            st.session_state.quiz_respuestas = {}
                     
                     if "quiz_identificacion" in st.session_state and st.session_state.quiz_identificacion:
                         st.write("---")
