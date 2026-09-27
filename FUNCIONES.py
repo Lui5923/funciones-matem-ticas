@@ -689,7 +689,7 @@ elif st.session_state.vista == "ia":
           try:  
               genai.configure(api_key=st.secrets["GEMINI_API_KEY_1"])
               modelo = genai.GenerativeModel("gemini-3-flash-preview")
-            return respuesta.text
+
             prompt = (
                     f"Genera {cantidad} situaciones problema de la vida real que se puedan modelar "
                     f"con una {tipo.lower()}. "
