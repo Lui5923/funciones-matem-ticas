@@ -719,7 +719,7 @@ elif st.session_state.vista == "ia":
                 st.secrets.get("GEMINI_API_KEY_1"),
                 st.secrets.get("GEMINI_API_KEY_2")
             ]
-            prompt = (f"""
+            prompt = (f""
             Actúa como un profesor experto en matemáticas. Genera un conjunto de {cantidad} preguntas de opción múltiple 
             sobre el tema: "{tipo_quiz}". Cada pregunta debe tener un enunciado claro (con un contexto de la vida real diferente y variado), 4 opciones de respuesta (A, B, C, D) y la respuesta correcta.
             Devuelve la respuesta estrictamente en un formato JSON que sea una lista de objetos, donde cada objeto tenga esta estructura exacta:
@@ -786,6 +786,7 @@ if st.session_state.vista == "desmos":
     calculator.setExpression({id: 'graph1', latex: 'y = x^2'});
     calculator.setExpression({id: 'slider', latex: 'a = 3'});
     calculator.setExpression({id: 'graph2', latex: 'y = a * x'});
-    </script> """
+    </script> 
+    """
 
     components.html(desmos_html, height=700)
