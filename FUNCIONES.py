@@ -727,10 +727,10 @@ elif st.session_state.vista == "ia":
         if "quiz_identificacion" in st.session_state and st.session_state.quiz_identificacion:
             st.write("---")
             for i, item in enumerate(st.session_state.quiz_identificacion):
-                st.markdown(f"**Ejercicio {i+1}:** {['enunciado']}")
+                st.markdown(f"**Ejercicio {i+1}:** {[]}")
                 opcion_elegida = st.radio(
                 f"¿A qué tipo de función corresponde el ejercicio {i+1}?",
-                item['opciones'],
+                item[],
                 key=f"radio_identifica_{i}"
             )
             if st.button(f"Comprobar ejercicio {i+1}", key=f"verificar_identifica_{i}"):
