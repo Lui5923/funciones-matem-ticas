@@ -93,8 +93,8 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=5):
 
     if tipo_objetivo == "Todos":
         preguntas = []
-        for tipo, lista in plantillas.items():
-            for item in lista:
+        for _in range(cantidad):
+            for item= random.chooice(preguntas)
                 preguntas.append({
                     "tipo": tipo,
                     **item,
