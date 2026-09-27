@@ -704,8 +704,6 @@ def generar_con_respaldo(prompt):
             modelo = genai.GenerativeModel("gemini-3-flash-preview")
             respuesta = modelo.generate_content(prompt)
             return respuesta.text
-        except Exception as e:
-            return "Error: Ninguna de las claves pudo procesar la solicitud en este momento."
             prompt = (
                     f"Genera {cantidad} situaciones problema de la vida real que se puedan modelar "
                     f"con una {tipo.lower()}. "
@@ -721,6 +719,8 @@ def generar_con_respaldo(prompt):
 
             r = modelo.generate_content(prompt)
             st.write(r.text)
+        except Exception as e:
+            return "Error: Ninguna de las claves pudo procesar la solicitud en este momento."
         except Exception as error: 
          st.error(f"Error: {error}")
 
