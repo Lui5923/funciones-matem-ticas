@@ -686,21 +686,9 @@ elif st.session_state.vista == "ia":
         cantidad = st.slider("Cantidad de ejercicios", min_value=3, max_value=10, value=5)
 
         if st.button("Generar con IA"):
-
-# Intentamos primero con la clave 1, si falla usamos la 2
-            api_keys = [
-    st.secrets.get("GEMINI_API_KEY_1"),
-    st.secrets.get("GEMINI_API_KEY_2")
-]
-
-def generar_con_respaldo(prompt):
-    for i, key in enumerate(api_keys):
-        if not key:
-            continue
-        try:
-            genai.configure(api_key=key)
-            modelo = genai.GenerativeModel("gemini-3-flash-preview")
-            respuesta = modelo.generate_content(prompt)
+          try:  
+              genai.configure(api_key=st.secrets["GEMINI_API_KEY_1"])
+              modelo = genai.GenerativeModel("gemini-3-flash-preview")
             return respuesta.text
             prompt = (
                     f"Genera {cantidad} situaciones problema de la vida real que se puedan modelar "
@@ -717,8 +705,8 @@ def generar_con_respaldo(prompt):
 
             r = modelo.generate_content(prompt)
             st.write(r.text)
-        except Exception as error: 
-         st.error(f"Error: {error}")
+          except Exception as error: 
+            st.error(f"Error: {error}")
 
     with tab_quiz:
         tipo_quiz = st.selectbox("Selecciona el tipo para practicar", ["Todos"] + TIPOS_FUNCION)
