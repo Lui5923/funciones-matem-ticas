@@ -735,7 +735,7 @@ elif st.session_state.vista == "ia":
             )
             if st.button(f"Comprobar ejercicio {i+1}", key=f"verificar_identifica_{i}"):
                 if opcion_elegida == item['respuesta']:
-                st.success("¡Excelente! Identificaste correctamente la función 🎉")
+                    st.success("¡Excelente! Identificaste correctamente la función 🎉")
             else:
                 st.error(f"Incorrecto. La respuesta correcta es: {item['respuesta']}")
                 st.write("")
