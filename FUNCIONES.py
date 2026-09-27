@@ -686,8 +686,6 @@ elif st.session_state.vista == "ia":
         cantidad = st.slider("Cantidad de ejercicios", min_value=3, max_value=10, value=5)
 
         if st.button("Generar con IA"):
-            import streamlit as st
-import google.generativeai as genai
 
 # Intentamos primero con la clave 1, si falla usamos la 2
 api_keys = [
