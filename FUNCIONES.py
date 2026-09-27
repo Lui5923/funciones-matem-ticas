@@ -745,7 +745,7 @@ for key in api_keys:
             
             # Convertimos el texto de la IA en una lista de Python utilizable
             preguntas_dict = json.loads(texto_limpio)
-        return preguntas_dict
+            return preguntas_dict
     except Exception as e:
             print(f"Error con una clave, intentando respaldo... {e}")
             
