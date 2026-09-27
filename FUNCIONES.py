@@ -711,8 +711,6 @@ elif st.session_state.vista == "ia":
 
 with tab_identifica:
     st.subheader("🔍 Práctica: Identifica la función")
-    
-    # Selector específico para las funciones matemáticas
     tipo_funcion = st.selectbox(
         "Selecciona la familia de función a practicar", 
         ["Todas"] + TIPOS_FUNCION,
