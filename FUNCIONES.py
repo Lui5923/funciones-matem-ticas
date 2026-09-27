@@ -688,7 +688,7 @@ elif st.session_state.vista == "ia":
         if st.button("Generar con IA"):
 
 # Intentamos primero con la clave 1, si falla usamos la 2
-api_keys = [
+            api_keys = [
     st.secrets.get("GEMINI_API_KEY_1"),
     st.secrets.get("GEMINI_API_KEY_2")
 ]
@@ -717,8 +717,6 @@ def generar_con_respaldo(prompt):
 
             r = modelo.generate_content(prompt)
             st.write(r.text)
-        except Exception as e:
-            return "Error: Ninguna de las claves pudo procesar la solicitud en este momento."
         except Exception as error: 
          st.error(f"Error: {error}")
 
