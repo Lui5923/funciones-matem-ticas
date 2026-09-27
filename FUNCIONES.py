@@ -740,12 +740,11 @@ elif st.session_state.vista == "ia":
                         except Exception as e:
                             st.error(f"Error: {error}")
                         with tab_quiz:
-        tipo_quiz = st.selectbox("Selecciona el tipo para practicar", ["Todos"] + TIPOS_FUNCION)
-        cantidad_quiz = st.slider("Número de preguntas", min_value=3, max_value=8, value=5, key="cantidad_quiz")
-        
-        if st.button("Generar preguntas de opción múltiple", key="generar_quiz"):
-            st.session_state.quiz_identificacion = generar_preguntas_identificacion(tipo_quiz, cantidad_quiz)
-            st.session_state.quiz_respuestas = {}
+                            tipo_quiz = st.selectbox("Selecciona el tipo para practicar", ["Todos"] + TIPOS_FUNCION)
+                            cantidad_quiz = st.slider("Número de preguntas", min_value=3, max_value=8, value=5, key="cantidad_quiz")
+                            if st.button("Generar preguntas de opción múltiple", key="generar_quiz"):
+                                st.session_state.quiz_identificacion = generar_preguntas_identificacion(tipo_quiz, cantidad_quiz)
+                                st.session_state.quiz_respuestas = {}
 # ==========================================================
 #  OPCIÓN 7: GRÁFICAS CON DESMOS
 # ==========================================================
