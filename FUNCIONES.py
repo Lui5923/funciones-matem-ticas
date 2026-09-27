@@ -726,15 +726,15 @@ elif st.session_state.vista == "ia":
     [
         {{
             "enunciado": "Texto del problema...",
-            "opciones": ["Opción 1", "Opción 2", "Opción 3", "Opción 4"],
+            "opciones": ["Opción 1", "Opción 2", "Opción 3", "Opción 4"]",
             "respuesta": "La opción correcta exacta que coincide con una de las opciones"
         }}
     ]
     No incluyas texto adicional ni bloques de Markdown fuera del JSON."""
-    for key in api_keys:
-        if not key:
-            continue
-        try:
+for key in api_keys:
+    if not key:
+        continue
+    try:
             genai.configure(api_key=key)
     # Usamos el modelo flash que ya tienes en tu app
             modelo = genai.GenerativeModel("gemini-3-flash")
@@ -747,7 +747,7 @@ elif st.session_state.vista == "ia":
             preguntas_dict = json.loads(texto_limpio)
         return preguntas_dict
             
-        except Exception as e:
+    except Exception as e:
             print(f"Error con una clave, intentando respaldo... {e}")
             
     # Si falla todo, devolvemos una lista vacía o de respaldo básica
