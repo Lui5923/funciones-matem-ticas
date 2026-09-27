@@ -734,7 +734,7 @@ elif st.session_state.vista == "ia":
             """
             for key in api_keys:
                 if not key:
-            continue
+                    continue
             try:
                 genai.configure(api_key=key)
                 modelo = genai.GenerativeModel("gemini-3-flash")
