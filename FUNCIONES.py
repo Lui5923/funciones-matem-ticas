@@ -707,7 +707,7 @@ elif st.session_state.vista == "ia":
               st.write(r.text)
           except Exception as error: 
               st.error(f"Error: {error}")
-     with tab_quiz:
+    with tab_quiz:
         tipo_quiz = st.selectbox("Selecciona el tipo para practicar", ["Todos"] + TIPOS_FUNCION)
         cantidad_quiz = st.slider("Número de preguntas", min_value=3, max_value=8, value=5, key="cantidad_quiz")
 
@@ -732,26 +732,25 @@ elif st.session_state.vista == "ia":
                 if respuesta is not None:
                     st.session_state.quiz_respuestas[i] = respuesta
 
-            if st.button("Corregir respuestas", key="corregir_quiz"):
+        if st.button("Corregir respuestas", key="corregir_quiz"):
                 aciertos = 0
                 total = len(preguntas)
 
-                for i, pregunta in enumerate(preguntas):
+            for i, pregunta in enumerate(preguntas):
                     respuesta_usuario = st.session_state.get(f"pregunta_{i}")
-                    if respuesta_usuario == pregunta["respuesta"]:
+                if respuesta_usuario == pregunta["respuesta"]:
                         aciertos += 1
 
                 st.success(f"Tu resultado: {aciertos}/{total} respuestas correctas.")
 
-                for i, pregunta in enumerate(preguntas):
+            for i, pregunta in enumerate(preguntas):
                     respuesta_usuario = st.session_state.get(f"pregunta_{i}")
                     estado = "✅ Correcta" if respuesta_usuario == pregunta["respuesta"] else "❌ Incorrecta"
                     st.write(f"Pregunta {i + 1}: {estado}. Respuesta correcta: {pregunta['respuesta']}")
 
                 if aciertos == total:
                     st.balloons()
-
-        else:
+            else:
             st.info("Genera un conjunto de preguntas para practicar la identificación de tipos de función.")
             
 # ==========================================================
