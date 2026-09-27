@@ -724,21 +724,21 @@ elif st.session_state.vista == "ia":
             st.session_state.quiz_identificacion = generar_ejercicios_identificacion(tipo_funcion, cantidad_ejercicios)
             st.session_state.quiz_respuestas = {}
                     
-                    if "quiz_identificacion" in st.session_state and st.session_state.quiz_identificacion:
-                        st.write("---")
-                        for i, item in enumerate(st.session_state.quiz_identificacion):
-                            st.markdown(f"**Ejercicio {i+1}:** {item['enunciado']}")
-                            opcion_elegida = st.radio(
-                                f"¿A qué tipo de función corresponde el ejercicio {i+1}?",
-                                item['opciones'],
-                                key=f"radio_identifica_{i}"
+        if "quiz_identificacion" in st.session_state and st.session_state.quiz_identificacion:
+            st.write("---")
+            for i, item in enumerate(st.session_state.quiz_identificacion):
+                st.markdown(f"**Ejercicio {i+1}:** {item['enunciado']}")
+                opcion_elegida = st.radio(
+                f"¿A qué tipo de función corresponde el ejercicio {i+1}?",
+                item['opciones'],
+                key=f"radio_identifica_{i}"
             )
-                            if st.button(f"Comprobar ejercicio {i+1}", key=f"verificar_identifica_{i}"):
-                                if opcion_elegida == item['respuesta']:
-                                    st.success("¡Excelente! Identificaste correctamente la función 🎉")
-                                else:
-                                    st.error(f"Incorrecto. La respuesta correcta es: {item['respuesta']}")
-                                    st.write("")
+        if st.button(f"Comprobar ejercicio {i+1}", key=f"verificar_identifica_{i}"):
+        if opcion_elegida == item['respuesta']:
+                st.success("¡Excelente! Identificaste correctamente la función 🎉")
+        else:
+                st.error(f"Incorrecto. La respuesta correcta es: {item['respuesta']}")
+                st.write("")
     def generar_ejercicios_identificacion(tipo, cantidad):
             api_keys = [
                 st.secrets.get("GEMINI_API_KEY_1"),
