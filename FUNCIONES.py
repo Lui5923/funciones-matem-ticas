@@ -686,9 +686,28 @@ elif st.session_state.vista == "ia":
         cantidad = st.slider("Cantidad de ejercicios", min_value=3, max_value=10, value=5)
 
         if st.button("Generar con IA"):
-            try:
-                genai.configure(api_key=[st.secrets.get("GEMINI_API_KEY_1"),st.secrets.get("GEMINI_API_KEY_2")]
-                modelo = genai.GenerativeModel("gemini-3-flash-preview")
+            import streamlit as st
+import google.generativeai as genai
+
+# Intentamos primero con la clave 1, si falla usamos la 2
+api_keys = [
+    st.secrets.get("GEMINI_API_KEY_1"),
+    st.secrets.get("GEMINI_API_KEY_2")
+]
+
+def generar_con_respaldo(prompt):
+    for i, key in enumerate(api_keys):
+        if not key:
+            continue
+        try:
+            genai.configure(api_key=key)
+            modelo = genai.GenerativeModel("gemini-3-flash-preview")
+            respuesta = modelo.generate_content(prompt)
+            return respuesta.text
+        except Exception as e:
+            print(f"Falló la clave {i+1}, intentando con la siguiente... Error: {e}")
+            
+    return "Error: Ninguna de las claves pudo procesar la solicitud en este momento."
 
                 prompt = (
                     f"Genera {cantidad} situaciones problema de la vida real que se puedan modelar "
