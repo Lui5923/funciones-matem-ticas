@@ -742,7 +742,7 @@ for key in api_keys:
             preguntas_dict = json.loads(texto_limpio)
     except Exception as e:
            print(f"Error con una clave, intentando respaldo... {e}")
-           return []
+             return []
 # ==========================================================
 #  OPCIÓN 7: GRÁFICAS CON DESMOS
 # ==========================================================
