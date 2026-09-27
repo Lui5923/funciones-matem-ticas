@@ -748,7 +748,7 @@ elif st.session_state.vista == "ia":
 if st.session_state.vista == "desmos":
     st.subheader("📐 Gráficas con Desmos")
 
-    desmos_html = """
+    desmos_html = ""
     <div id="calculator" style="width: 100%; height: 500px;"></div>
     <script src="https://www.desmos.com/api/v1.12/calculator.js?apiKey=9bda5869329f43429dddd48875ee6168"></script>
     <script>
@@ -760,6 +760,6 @@ if st.session_state.vista == "desmos":
     calculator.setExpression({id: 'slider', latex: 'a = 3'});
     calculator.setExpression({id: 'graph2', latex: 'y = a * x'});
     </script>
-    """
+    ""
 components.html(desmos_html, height=550)
 
