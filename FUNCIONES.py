@@ -707,72 +707,52 @@ elif st.session_state.vista == "ia":
               st.write(r.text)
           except Exception as error: 
               st.error(f"Error: {error}")
-              
-    with tab_quiz:
-        st.subheader("🔍 Práctica: Identifica la función")
-        tipo_funcion = st.selectbox(
-        "Selecciona la familia de función a practicar", 
-        ["Todas"] + TIPOS_FUNCION,
-        key="select_tipo_funcion"
-    )
-        cantidad_ejercicios = st.slider(
-        "Número de ejercicios", 
-        min_value=3, max_value=8, value=5, 
-        key="slider_cant_identifica"
-    )
-        if st.button("Generar ejercicios de identificación"):
-            st.session_state.quiz_identificacion=(tipo_funcion, cantidad_ejercicios)
+     with tab_quiz:
+        tipo_quiz = st.selectbox("Selecciona el tipo para practicar", ["Todos"] + TIPOS_FUNCION)
+        cantidad_quiz = st.slider("Número de preguntas", min_value=3, max_value=8, value=5, key="cantidad_quiz")
+
+        if st.button("Generar preguntas de opción múltiple", key="generar_quiz"):
+            st.session_state.quiz_identificacion = generar_preguntas_identificacion(tipo_quiz, cantidad_quiz)
             st.session_state.quiz_respuestas = {}
-                    
+
         if "quiz_identificacion" in st.session_state and st.session_state.quiz_identificacion:
-            st.write("---")
-            for i, item in enumerate(st.session_state.quiz_identificacion):
-                st.markdown(f"**Ejercicio {i+1}:** {[]}")
-                opcion_elegida = st.radio(
-                f"¿A qué tipo de función corresponde el ejercicio {i+1}?",
-                key=f"radio_identifica_{i}"
-            )
-            if st.button(f"Comprobar ejercicio {i+1}", key=f"verificar_identifica_{i}"):
-                if opcion_elegida == item['respuesta']:
-                    st.success("¡Excelente! Identificaste correctamente la función 🎉")
-            else:
-                st.error(f"Incorrecto. La respuesta correcta es: {item['respuesta']}")
-                st.write("")
-    def generar_ejercicios_identificacion(tipo, cantidad):
-            api_keys = [
-                st.secrets.get("GEMINI_API_KEY_1"),
-                st.secrets.get("GEMINI_API_KEY_2")
-            ]
-            
-            prompt = """
-            Actúa como un profesor experto en matemáticas. Genera un conjunto de {cantidad} ejercicios prácticos 
-            donde el estudiante de secundaria deba **identificar la función** correspondiente 
-            basándose en su ecuación, tabla de valores o descripción gráfica.
-            El tema seleccionado es: "{tipo}".
-            
-            Devuelve la respuesta estrictamente en un formato JSON que sea una lista de objetos con esta estructura exacta:
-            [
-              {{
-                "enunciado": "Descripción del problema o ecuación a identificar...",
-                "opciones": ["Función lineal", "Función cuadrática", "Función exponencial", "Función constante", "Funcion cubica", "Funcion valor absoluto"],
-                "respuesta": "La opción correcta exacta"
-              }}
-            ]
-            No incluyas texto adicional ni bloques de Markdown fuera del JSON.
-            """
-            
-            for key in api_keys:
-                if not key:
-                    continue
-                try:
-                    genai.configure(api_key=key)
-                    modelo = genai.GenerativeModel("gemini-1.5-flash")
-                    respuesta = modelo.generate_content(prompt)
-                    texto_limpio = respuesta.text.replace("```json", "").replace("```", "").strip()
-                    return json.loads(texto_limpio)
-                except Exception as e:
-                    st.error(f"Error: {error}")
-                    return []
+            preguntas = st.session_state.quiz_identificacion
+
+            for i, pregunta in enumerate(preguntas):
+                st.markdown(f"### Pregunta {i + 9}")
+                st.write(pregunta["enunciado"])
+
+                respuesta = st.radio(
+                    "Selecciona la respuesta correcta:",
+                    pregunta["opciones"],
+                    index=None,
+                    key=f"pregunta_{i}",
+                )
+
+                if respuesta is not None:
+                    st.session_state.quiz_respuestas[i] = respuesta
+
+            if st.button("Corregir respuestas", key="corregir_quiz"):
+                aciertos = 0
+                total = len(preguntas)
+
+                for i, pregunta in enumerate(preguntas):
+                    respuesta_usuario = st.session_state.get(f"pregunta_{i}")
+                    if respuesta_usuario == pregunta["respuesta"]:
+                        aciertos += 1
+
+                st.success(f"Tu resultado: {aciertos}/{total} respuestas correctas.")
+
+                for i, pregunta in enumerate(preguntas):
+                    respuesta_usuario = st.session_state.get(f"pregunta_{i}")
+                    estado = "✅ Correcta" if respuesta_usuario == pregunta["respuesta"] else "❌ Incorrecta"
+                    st.write(f"Pregunta {i + 1}: {estado}. Respuesta correcta: {pregunta['respuesta']}")
+
+                if aciertos == total:
+                    st.balloons()
+
+        else:
+            st.info("Genera un conjunto de preguntas para practicar la identificación de tipos de función.")
             
 # ==========================================================
 #  OPCIÓN 7: GRÁFICAS CON DESMOS
