@@ -750,7 +750,7 @@ for key in api_keys:
             print(f"Error con una clave, intentando respaldo... {e}")
             
     # Si falla todo, devolvemos una lista vacía o de respaldo básica
-    return []
+            return []
 # ==========================================================
 #  OPCIÓN 7: GRÁFICAS CON DESMOS
 # ==========================================================
