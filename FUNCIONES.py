@@ -709,7 +709,7 @@ elif st.session_state.vista == "ia":
               st.error(f"Error: {error}")
 
 
-with tab_identifica:
+with tab_quiz:
     st.subheader("🔍 Práctica: Identifica la función")
     tipo_funcion = st.selectbox(
         "Selecciona la familia de función a practicar", 
