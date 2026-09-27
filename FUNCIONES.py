@@ -711,7 +711,8 @@ elif st.session_state.vista == "ia":
     with tab_quiz:
         tipo_quiz = st.selectbox("Selecciona el tipo para practicar", ["Todos"] + TIPOS_FUNCION)
         cantidad_quiz = st.slider("Número de preguntas", min_value=3, max_value=8, value=5, key="cantidad_quiz")
-        if st.button("Generar preguntas de opción múltiple"):
+        
+        if st.button("Generar preguntas de opción múltiple", key="generar_quiz"):
 
         
     def generar_preguntas_identificacion(tipo_quiz, cantidad):
@@ -737,7 +738,7 @@ elif st.session_state.vista == "ia":
                 if not key:
                     continue
             try:
-                genai.configure(api_key=key)
+                genai.configure(api_key=st.secrets(GEMINI_API_KEY_2)
                 modelo = genai.GenerativeModel("gemini-3-flash")
                 respuesta = modelo.generate_content(prompt)
                 texto_limpio = respuesta.text.replace("```json", "").replace("```", "").strip()
