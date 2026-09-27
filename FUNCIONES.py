@@ -722,7 +722,7 @@ elif st.session_state.vista == "ia":
     )
         if st.button("Generar ejercicios de identificación"):
             
-            def generar_ejercicios_identificacion(tipo, cantidad):
+    def generar_ejercicios_identificacion(tipo, cantidad):
             api_keys = [
                 st.secrets.get("GEMINI_API_KEY_1"),
                 st.secrets.get("GEMINI_API_KEY_2")
