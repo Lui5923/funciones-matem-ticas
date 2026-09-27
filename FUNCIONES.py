@@ -691,17 +691,17 @@ elif st.session_state.vista == "ia":
               modelo = genai.GenerativeModel("gemini-3-flash-preview")
 
             prompt = (
-                    f"Genera {cantidad} situaciones problema de la vida real que se puedan modelar "
-                    f"con una {tipo.lower()}. "
-                    "Cada situación debe estar bien contextualizada (un escenario claro, con datos "
-                    "concretos y coherentes: nombres, cantidades, unidades), redactada de forma clara "
-                    "para estudiantes de secundaria, y debe plantear una pregunta explícita al final "
-                    "que el estudiante deba resolver planteando la función correspondiente. "
-                    "NO incluyas las respuestas ni el desarrollo de los problemas, solo el enunciado. "
-                    "Numera cada situación del 1 al "
-                    f"{cantidad}. "
-                    "Escribe en texto plano, sin asteriscos, sin emojis, sin formato markdown."
-            )
+                f"Genera {cantidad} situaciones problema de la vida real que se puedan modelar "
+                f"con una {tipo.lower()}. "
+                "Cada situación debe estar bien contextualizada (un escenario claro, con datos "
+                "concretos y coherentes: nombres, cantidades, unidades), redactada de forma clara "
+                "para estudiantes de secundaria, y debe plantear una pregunta explícita al final "
+                "que el estudiante deba resolver planteando la función correspondiente. "
+                "NO incluyas las respuestas ni el desarrollo de los problemas, solo el enunciado. "
+                "Numera cada situación del 1 al "
+                f"{cantidad}. "
+                "Escribe en texto plano, sin asteriscos, sin emojis, sin formato markdown."
+               )
 
             r = modelo.generate_content(prompt)
             st.write(r.text)
