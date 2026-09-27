@@ -774,7 +774,7 @@ def generar_con_respaldo(prompt):
 # ==========================================================
 #  OPCIÓN 7: GRÁFICAS CON DESMOS
 # ==========================================================
-elif st.session_state.vista == "desmos":
+if st.session_state.vista == "desmos":
     st.subheader("📐 Gráficas con Desmos")
 
     desmos_html = """
