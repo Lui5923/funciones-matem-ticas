@@ -719,16 +719,16 @@ elif st.session_state.vista == "ia":
                 st.secrets.get("GEMINI_API_KEY_1"),
                 st.secrets.get("GEMINI_API_KEY_2")
             ]
-              prompt = (f"""
-              Actúa como un profesor experto en matemáticas. Genera un conjunto de {cantidad} preguntas de opción múltiple 
-              sobre el tema: "{tipo_quiz}". Cada pregunta debe tener un enunciado claro (con un contexto de la vida real diferente y variado), 4 opciones de respuesta (A, B, C, D) y la respuesta correcta.
-              Devuelve la respuesta estrictamente en un formato JSON que sea una lista de objetos, donde cada objeto tenga esta estructura exacta:
+            prompt = (f"""
+            Actúa como un profesor experto en matemáticas. Genera un conjunto de {cantidad} preguntas de opción múltiple 
+            sobre el tema: "{tipo_quiz}". Cada pregunta debe tener un enunciado claro (con un contexto de la vida real diferente y variado), 4 opciones de respuesta (A, B, C, D) y la respuesta correcta.
+            Devuelve la respuesta estrictamente en un formato JSON que sea una lista de objetos, donde cada objeto tenga esta estructura exacta:
                 )
     [
         {{
-             "enunciado": "Texto del problema...",
-             "opciones": ["Opción 1", "Opción 2", "Opción 3", "Opción 4"],
-             "respuesta": "La opción correcta exacta que coincide con una de las opciones"
+            "enunciado": "Texto del problema...",
+            "opciones": ["Opción 1", "Opción 2", "Opción 3", "Opción 4"],
+            "respuesta": "La opción correcta exacta que coincide con una de las opciones"
         }}
     ]
     No incluyas texto adicional ni bloques de Markdown fuera del JSON.
@@ -739,7 +739,7 @@ elif st.session_state.vista == "ia":
         try:
             genai.configure(api_key=key)
     # Usamos el modelo flash que ya tienes en tu app
-    modelo = genai.GenerativeModel("gemini-1.5-flash")
+    modelo = genai.GenerativeModel("gemini-3-flash")
     respuesta = modelo.generate_content(prompt)
     
     # Limpiamos el texto por si la IA devuelve marcas de código markdown
