@@ -719,10 +719,10 @@ def generar_con_respaldo(prompt):
                     "Escribe en texto plano, sin asteriscos, sin emojis, sin formato markdown."
             )
 
-                r = modelo.generate_content(prompt)
-                st.write(r.text)
-            except Exception as error:
-                st.error(f"Error: {error}")
+            r = modelo.generate_content(prompt)
+            st.write(r.text)
+         except Exception as error:
+            st.error(f"Error: {error}")
 
     with tab_quiz:
         tipo_quiz = st.selectbox("Selecciona el tipo para practicar", ["Todos"] + TIPOS_FUNCION)
