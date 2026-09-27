@@ -738,7 +738,7 @@ elif st.session_state.vista == "ia":
         if "quiz_identificacion" in st.session_state and st.session_state.quiz_identificacion:
             preguntas = st.session_state.quiz_identificacion
             respuesta_usuario = st.session_state.get(f"pregunta_{i}")
-            if respuesta_usuario == pregunta["respuesta"]:
+        if respuesta_usuario == pregunta["respuesta"]:
             aciertos += 1
             st.success(f"Tu resultado: {aciertos}/{total} respuestas correctas.")
 for i, pregunta in enumerate(preguntas):
