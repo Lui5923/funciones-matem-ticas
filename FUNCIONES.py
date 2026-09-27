@@ -736,7 +736,7 @@ elif st.session_state.vista == "ia":
                 aciertos = 0
                 total = len(preguntas)
 
-            for i, pregunta in enumerate(preguntas):
+        for i, pregunta in enumerate(preguntas):
                 respuesta_usuario = st.session_state.get(f"pregunta_{i}")
                 if respuesta_usuario == pregunta["respuesta"]:
                     aciertos += 1
