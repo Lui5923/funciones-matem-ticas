@@ -7,7 +7,6 @@ import google.generativeai as genai
 
 st.set_page_config(page_title="Funciones Matemáticas", page_icon="📊", layout="centered")
 
-Aquí tienes los 8 ejercicios para cada uno de los tipos de función solicitados, estructurados exactamente con el formato de tu ejemplo (enunciado y respuesta):
 TIPOS_FUNCION = [
     "Función constante",
     "Función lineal",
