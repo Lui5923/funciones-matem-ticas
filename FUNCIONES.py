@@ -733,9 +733,9 @@ elif st.session_state.vista == "ia":
                     st.session_state.quiz_respuestas[i] = respuesta
 
         if st.button("Corregir respuestas", key="corregir_quiz"):
-                aciertos = 0
-                total = len(preguntas)
-            for i, pregunta in enumerate(preguntas):
+            aciertos = 0
+            total = len(preguntas)
+        for i, pregunta in enumerate(preguntas):
                 respuesta_usuario = st.session_state.get(f"pregunta_{i}")
                 if respuesta_usuario == pregunta["respuesta"]:
                     aciertos += 1
