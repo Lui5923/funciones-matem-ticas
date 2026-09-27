@@ -756,18 +756,6 @@ elif st.session_state.vista == "ia":
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 # ==========================================================
 #  OPCIÓN 7: GRÁFICAS CON DESMOS
 # ==========================================================
@@ -786,5 +774,6 @@ if st.session_state.vista == "desmos":
     calculator.setExpression({id: 'slider', latex: 'a = 3'});
     calculator.setExpression({id: 'graph2', latex: 'y = a * x'});
     </script>
-    """, height=700)
+    """
+components.html(desmos_html, height=550)
 
