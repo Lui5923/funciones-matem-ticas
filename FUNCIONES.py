@@ -722,7 +722,7 @@ with tab_identifica:
         key="slider_cant_identifica"
     )
 
-    if st.button("Generar ejercicios de identificación", key="btn_gen_identifica"):
+    if st.button("Generar ejercicios de identificación"):
         
         def generar_ejercicios_identificacion(tipo, cantidad):
             api_keys = [
