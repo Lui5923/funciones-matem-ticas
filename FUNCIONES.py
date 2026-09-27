@@ -735,21 +735,20 @@ elif st.session_state.vista == "ia":
         if st.button("Corregir respuestas", key="corregir_quiz"):
             aciertos = 0
             total = len(preguntas)
-        for i, pregunta in enumerate(preguntas):
-                respuesta_usuario = st.session_state.get(f"pregunta_{i}")
-                if respuesta_usuario == pregunta["respuesta"]:
-                    aciertos += 1
+for i, pregunta in enumerate(preguntas):
+    respuesta_usuario = st.session_state.get(f"pregunta_{i}")
+        if respuesta_usuario == pregunta["respuesta"]:
+            aciertos += 1
+            st.success(f"Tu resultado: {aciertos}/{total} respuestas correctas.")
 
-                st.success(f"Tu resultado: {aciertos}/{total} respuestas correctas.")
+for i, pregunta in enumerate(preguntas):
+    respuesta_usuario = st.session_state.get(f"pregunta_{i}")
+    estado = "✅ Correcta" if respuesta_usuario == pregunta["respuesta"] else "❌ Incorrecta"
+    st.write(f"Pregunta {i + 1}: {estado}. Respuesta correcta: {pregunta['respuesta']}")
 
-            for i, pregunta in enumerate(preguntas):
-                respuesta_usuario = st.session_state.get(f"pregunta_{i}")
-                estado = "✅ Correcta" if respuesta_usuario == pregunta["respuesta"] else "❌ Incorrecta"
-                st.write(f"Pregunta {i + 1}: {estado}. Respuesta correcta: {pregunta['respuesta']}")
-
-                if aciertos == total:
-                    st.balloons()
-            else:
+        if aciertos == total:
+            st.balloons()
+        else:
             st.info("Genera un conjunto de preguntas para practicar la identificación de tipos de función.")
             
 # ==========================================================
