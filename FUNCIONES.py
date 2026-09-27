@@ -752,8 +752,6 @@ for key in api_keys:
     # Si falla todo, devolvemos una lista vacía o de respaldo básica
         return []
 
-
-
 # ==========================================================
 #  OPCIÓN 7: GRÁFICAS CON DESMOS
 # ==========================================================
