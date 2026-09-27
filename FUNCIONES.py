@@ -719,10 +719,10 @@ elif st.session_state.vista == "ia":
                 st.secrets.get("GEMINI_API_KEY_1"),
                 st.secrets.get("GEMINI_API_KEY_2")
             ]
-            prompt = (f""
-            Actúa como un profesor experto en matemáticas. Genera un conjunto de {cantidad} preguntas de opción múltiple 
-            sobre el tema: "{tipo_quiz}". Cada pregunta debe tener un enunciado claro (con un contexto de la vida real diferente y variado), 4 opciones de respuesta (A, B, C, D) y la respuesta correcta.
-            Devuelve la respuesta estrictamente en un formato JSON que sea una lista de objetos, donde cada objeto tenga esta estructura exacta:
+            prompt = (f"""
+            Actúa como un profesor experto en matemáticas. Genera un conjunto de {cantidad} preguntas de opción múltiple"
+            "sobre el tema: "{tipo_quiz}". Cada pregunta debe tener un enunciado claro (con un contexto de la vida real diferente y variado), 4 opciones de respuesta (A, B, C, D) y la respuesta correcta."
+            "Devuelve la respuesta estrictamente en un formato JSON que sea una lista de objetos, donde cada objeto tenga esta estructura exacta:"
                 )
     [
         {{
@@ -731,8 +731,7 @@ elif st.session_state.vista == "ia":
             "respuesta": "La opción correcta exacta que coincide con una de las opciones"
         }}
     ]
-    No incluyas texto adicional ni bloques de Markdown fuera del JSON.
-    ""
+    No incluyas texto adicional ni bloques de Markdown fuera del JSON.""
     for key in api_keys:
         if not key:
             continue
