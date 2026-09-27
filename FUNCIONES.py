@@ -7,6 +7,7 @@ import google.generativeai as genai
 
 st.set_page_config(page_title="Funciones Matemáticas", page_icon="📊", layout="centered")
 
+Aquí tienes los 8 ejercicios para cada uno de los tipos de función solicitados, estructurados exactamente con el formato de tu ejemplo (enunciado y respuesta):
 TIPOS_FUNCION = [
     "Función constante",
     "Función lineal",
@@ -15,11 +16,10 @@ TIPOS_FUNCION = [
     "Función racional",
     "Función exponencial",
     "Función valor absoluto",
-    "Función logarítmica",
 ]
 
 
-def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=5):
+def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=8):
     plantillas = {
         "Función constante": [
             {
@@ -28,6 +28,30 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=5):
             },
             {
                 "enunciado": "La mensualidad de un servicio de internet cuesta siempre 300 pesos, aunque el usuario navegue más o menos.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "Un estacionamiento cobra una tarifa única y plana de 50 pesos por todo el día, sin importar las horas que se deje el auto.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "La temperatura en una cámara frigorífica se mantiene fija a 4 grados Celsius durante todo el fin de semana.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "Una empresa paga un bono de puntualidad invariable de 500 pesos mensuales a todos sus empleados, sin excepción.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "La velocidad de una partícula se registra como 15 m/s en todo momento durante una prueba de control.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "El impuesto fijo estatal para la propiedad es de 1,200 pesos anuales, independientemente del valor catastral de la casa.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "Una máquina expendedora dispensa boletos que cuestan siempre 10 pesos, sin importar el horario de compra.",
                 "respuesta": "Función constante",
             },
         ],
@@ -40,6 +64,30 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=5):
                 "enunciado": "Una impresora entrega 12 hojas por minuto, así que la cantidad de hojas impresas crece de manera constante con el tiempo.",
                 "respuesta": "Función lineal",
             },
+            {
+                "enunciado": "Un albañil cobra un cargo base por visita de 200 pesos más 150 pesos por cada hora de trabajo.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "Un tanque con 50 litros de agua se llena a razón de 5 litros adicionales por cada minuto que transcurre.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "El costo de producción de cuadernos es de 12 pesos por unidad, con un costo fijo de operación nulo.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "Un corredor avanza a una velocidad constante de 8 km por hora desde el inicio de la competencia.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "Una cuenta de ahorros recibe un depósito semanal constante de 250 pesos sin generar intereses adicionales complejos.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "La longitud de un resorte se estira 2 cm por cada kilogramo de peso adicional que se le cuelga.",
+                "respuesta": "Función lineal",
+            },
         ],
         "Función cuadrática": [
             {
@@ -48,6 +96,30 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=5):
             },
             {
                 "enunciado": "La altura de un objeto lanzado al aire se modela con h(t) = -5t² + 30t + 2.",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "Los ingresos mensuales de una tienda en función del precio de su producto principal se describen mediante I(x) = -2x² + 100x.",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "La trayectoria del agua en una fuente ornamental sigue la ecuación parabólica f(x) = -x² + 6x.",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "El área total de un terreno cuadrado en función de la longitud de su lado incrementada se modela con A(l) = (l + 4)².",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "La ganancia neta de una empresa en función de la inversión publicitaria x está dada por G(x) = -3x² + 120x - 400.",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "El consumo de combustible de un auto en función de su velocidad constante se modela mediante C(v) = 0.05v² - 4v + 90.",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "La potencia eléctrica disipada en un circuito en función de la corriente se calcula mediante P(i) = 4i².",
                 "respuesta": "Función cuadrática",
             },
         ],
@@ -60,6 +132,30 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=5):
                 "enunciado": "El volumen de un cubo se expresa como V(l) = l³, donde l es la longitud de la arista.",
                 "respuesta": "Función cúbica",
             },
+            {
+                "enunciado": "El crecimiento de un fenómeno físico se modela con la función polinómica f(x) = 2x³ - 5x² + x - 3.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "La deformación de una viga bajo cierta carga se rige por la ecuación polinómica D(x) = x³ - 3x.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "El beneficio acumulado de una startup tecnológica durante sus primeros años se representa por B(t) = t³ - 6t² + 9t.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "El caudal de un fluido a través de un conducto especial varía en función del radio según la expresión Q(r) = 4r³.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "La expansión volumétrica de un material con respecto a la temperatura se aproxima mediante V(T) = 0.5T³ + 10.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "Una función de costos complejos para la fabricación en masa está dada por C(q) = q³ - 4q² + 20q + 150.",
+                "respuesta": "Función cúbica",
+            },
         ],
         "Función racional": [
             {
@@ -70,10 +166,62 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=5):
                 "enunciado": "La velocidad promedio de un viaje depende de la distancia y el tiempo mediante v = 150/(t + 5).",
                 "respuesta": "Función racional",
             },
+            {
+                "enunciado": "La concentración de un medicamento en el torrente sanguíneo a lo largo del tiempo se modela con C(t) = 50 / (t² + 1).",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "El tiempo que tardan varios obreros en construir una barda se expresa mediante T(x) = 40/x, donde x es el número de trabajadores.",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "La resistencia eléctrica equivalente en paralelo de dos componentes se rige por la fórmula R(x) = 10x / (x + 10).",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "La intensidad luminosa percibida a cierta distancia de una fuente se modela con I(d) = 500 / d².",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "El porcentaje de impurezas en un tanque de purificación se calcula con P(t) = (20t + 5) / (t + 2).",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "La razón de eficiencia de una máquina industrial se describe mediante E(x) = (100x - 5) / (x + 1).",
+                "respuesta": "Función racional",
+            },
         ],
         "Función exponencial": [
             {
                 "enunciado": "Una colonia de bacterias duplica su población cada hora, por lo que P(t) = 5·2^t.",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "El dinero en una cuenta de inversión con interés compuesto continuo crece según la fórmula A(t) = 1000·e^(0.05t).",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "La depreciación del valor de una maquinaria disminuye un 15% cada año, modelándose como V(t) = 50000·(0.85)^t.",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "La cantidad de material radiactivo remonta un proceso de descomposición donde M(t) = 200·(1/2)^(t/3).",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "La propagación de un rumor en una red social sigue un crecimiento explosivo dado por R(d) = 10·3^d.",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "La presión atmosférica disminuye exponencialmente a medida que aumenta la altitud h, expresada como P(h) = 1013·e^(-0.12h).",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "El número de usuarios activos de una plataforma web se triplica cada mes según N(m) = 500·3^m.",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "Una reacción química duplica su velocidad de catálisis cada 10 grados de temperatura, modelada por V(T) = 2^(T/10).",
                 "respuesta": "Función exponencial",
             },
         ],
@@ -82,14 +230,35 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=5):
                 "enunciado": "La distancia de un punto a cero se modela con d(x) = |x - 3|.",
                 "respuesta": "Función valor absoluto",
             },
-        ],
-        "Función logarítmica": [
             {
-                "enunciado": "La intensidad del sonido se mide con una escala logarítmica, como I(x) = log(x + 1).",
-                "respuesta": "Función logarítmica",
+                "enunciado": "El margen de error permitido en la fabricación de una pieza metálica se calcula mediante E(x) = |x - 10|.",
+                "respuesta": "Función valor absoluto",
             },
-        ],
-    }
+            {
+                "enunciado": "La variación térmica respecto a una temperatura ideal de 22 grados se representa con f(T) = |T - 22|.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "La desviación absoluta de los datos de ventas respecto a la media se define por D(x) = |x - 150|.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "Un sensor mide la diferencia de potencial simétrica mediante V(x) = 3|x| - 5.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "La altura del rebote de una pelota simétrica respecto a su eje de caída se modela con h(t) = -|t - 2| + 4.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "El costo de desvío de una ruta de entrega se calcula en función de los kilómetros extra como C(x) = 15|x - 5|.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "La ganancia o pérdida absoluta en la bolsa para un activo específico se describe por G(x) = |2x - 10|.",
+                "respuesta": "Función valor absoluto",
+            },
+        ]
 
     # Función auxiliar para generar opciones incluyendo distractores
     def crear_opciones(respuesta_correcta):
