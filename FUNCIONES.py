@@ -733,7 +733,7 @@ elif st.session_state.vista == "ia":
                 item['opciones'],
                 key=f"radio_identifica_{i}"
             )
-        if st.button(f"Comprobar ejercicio {i+1}", key=f"verificar_identifica_{i}"):
+            if st.button(f"Comprobar ejercicio {i+1}", key=f"verificar_identifica_{i}"):
             if opcion_elegida == item['respuesta']:
                 st.success("¡Excelente! Identificaste correctamente la función 🎉")
             else:
