@@ -1128,9 +1128,4 @@ if st.session_state.vista == "desmos":
     """
     
     components.html(desmos_html, height=550)
-  # Lo colocas en la barra lateral para que aparezca limpio a un lado de tu app
-with st.sidebar:
-    st.markdown("### 🌐 Language Selector")
-    components.html(google_translate_html, height=100)
-    st.markdown("---")
 
