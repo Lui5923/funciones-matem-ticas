@@ -17,10 +17,10 @@ import streamlit.components.v1 as components
 traducton_browser_html = """
 <script>
     const doc = window.parent.document;
-    doc.documentElement.lang = 'en';
+    doc.documentElement.lang = 'es';
 </script>
 """
-components.html(traducton_browser_html, height=0)
+components.html(traducton_browser_html, height=10)
   
 st.set_page_config(page_title="Funciones Matemáticas", page_icon="📊", layout="centered")
 
