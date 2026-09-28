@@ -6,38 +6,44 @@ import streamlit.components.v1 as components
 import google.generativeai as genai
 import json
 
+# ==========================================================
+# 🌐 WIDGET OFICIAL DE GOOGLE TRANSLATE PARA LA CLASE
+# ==========================================================
+tradductor_google_html = """
+<div id="google_translate_element" style="margin-bottom: 10px;"></div>
 
-# ==========================================================
-# 🌍 TRADUCTOR AUTOMÁTICO SIMULTÁNEO PARA LOS 20 ESTUDIANTES
-# ==========================================================
-# Este script inserta el widget oficial de Google Translate de forma oculta 
-# y fuerza la traducción automática al inglés para todos al instante.
-traducton_automatico_html = """
-<div id="google_translate_element" style="display:none;"></div>
 <script type="text/javascript">
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
-    pageLanguage: 'es', 
-    includedLanguages: 'en', 
+    pageLanguage: 'es',
+    includedLanguages: 'en',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
     autoDisplay: true
   }, 'google_translate_element');
 }
 </script>
+
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 <script>
-// Forzar la ejecución del selector de Google para que traduzca al cargar
-setTimeout(function() {
-    var selectField = document.querySelector("select.goog-te-combo");
-    if(selectField) {
-        selectField.value = "en";
-        selectField.dispatchEvent(new Event("change"));
-    }
-}, 1500);
+// Forzar la selección automática al inglés tras cargar la página
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        var iframe = document.querySelector('.goog-te-menu-frame');
+        var select = document.querySelector('.goog-te-combo');
+        if (select) {
+            select.value = 'en';
+            select.dispatchEvent(new Event('change'));
+        }
+    }, 2000);
+});
 </script>
 """
 
-# Se coloca al inicio para que cargue con la página
-components.html(traducton_automatico_html, height=0)
+# Se coloca visible y ordenado en la barra lateral para tus estudiantes
+with st.sidebar:
+    st.markdown("### 🌐 Language / Idioma")
+    components.html(tradductor_google_html, height=80)
   
 st.set_page_config(page_title="Funciones Matemáticas", page_icon="📊", layout="centered")
 
