@@ -14,7 +14,7 @@ google_translate_html = """
 <script type="text/javascript">
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
-    pageLanguage: 'es', 
+    pageLanguage: 'en', 
     includedLanguages: 'en,es', 
     layout: google.translate.TranslateElement.InlineLayout.SIMPLE
   }, 'google_translate_element');
