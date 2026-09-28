@@ -23,9 +23,9 @@ function googleTranslateElementInit() {
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 """
 with st.sidebar:
-  st.markdown("Language Selector
-  components.html (google_translate_html, height=100)
-  st.markdown("---")  
+st.markdown("Language Selector
+components.html (google_translate_html, height=100)
+st.markdown("---")  
   
 st.set_page_config(page_title="Funciones Matemáticas", page_icon="📊", layout="centered")
 
