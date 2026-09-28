@@ -6,44 +6,7 @@ import streamlit.components.v1 as components
 import google.generativeai as genai
 import json
 
-# ==========================================================
-# 🌐 WIDGET OFICIAL DE GOOGLE TRANSLATE PARA LA CLASE
-# ==========================================================
-tradductor_google_html = """
-<div id="google_translate_element" style="margin-bottom: 10px;"></div>
-
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'es',
-    includedLanguages: 'en',
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-    autoDisplay: true
-  }, 'google_translate_element');
-}
-</script>
-
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-<script>
-// Forzar la selección automática al inglés tras cargar la página
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        var iframe = document.querySelector('.goog-te-menu-frame');
-        var select = document.querySelector('.goog-te-combo');
-        if (select) {
-            select.value = 'en';
-            select.dispatchEvent(new Event('change'));
-        }
-    }, 2000);
-});
-</script>
-"""
-
-# Se coloca visible y ordenado en la barra lateral para tus estudiantes
-with st.sidebar:
-    st.markdown("### 🌐 Language / Idioma")
-    components.html(tradductor_google_html, height=80)
+language="English"
   
 st.set_page_config(page_title="Funciones Matemáticas", page_icon="📊", layout="centered")
 
