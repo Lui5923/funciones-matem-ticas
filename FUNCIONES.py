@@ -10,7 +10,7 @@ import json
 # 🌐 WIDGET DE GOOGLE TRANSLATE
 # ==========================================
 with st.sidebar:
-  st.markdown("### 🌐 Language Selector
+  st.markdown(### 🌐 Language Selector
   components.html (google_translate_html, height=100)
   st.markdown("---")  
 google_translate_html = """
