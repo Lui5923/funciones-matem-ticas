@@ -6,11 +6,6 @@ import streamlit.components.v1 as components
 import google.generativeai as genai
 import json
 
-import streamlit as st
-import streamlit.components.v1 as components
-
-import streamlit as st
-import streamlit.components.v1 as components
 
 # ==========================================================
 # 🌍 TRADUCTOR AUTOMÁTICO SIMULTÁNEO PARA LOS 20 ESTUDIANTES
