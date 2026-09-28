@@ -6,26 +6,21 @@ import streamlit.components.v1 as components
 import google.generativeai as genai
 import json
 
-# ==========================================
-# 🌐 WIDGET DE GOOGLE TRANSLATE
-# ==========================================
-google_translate_html = """
-<div id="google_translate_element"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'en', 
-    includedLanguages: 'en,es', 
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-  }, 'google_translate_element');
-}
+import streamlit as st
+import streamlit.components.v1 as components
+
+# ==========================================================
+# 🌐 ACTIVADOR DEL TRADUCTOR NATIVO DEL NAVEGADOR
+# ==========================================================
+# Esto configura la etiqueta del navegador para que el icono 
+# de la esquina superior derecha reconozca el texto y permita traducirlo al instante.
+traducton_browser_html = """
+<script>
+    const doc = window.parent.document;
+    doc.documentElement.lang = 'es';
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 """
-with st.sidebar:
-  st.markdown("Language Selector")
-  components.html (google_translate_html, height=100)
-  st.markdown("---")  
+components.html(traducton_browser_html, height=0)
   
 st.set_page_config(page_title="Funciones Matemáticas", page_icon="📊", layout="centered")
 
