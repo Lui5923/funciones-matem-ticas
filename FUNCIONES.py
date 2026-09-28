@@ -9,18 +9,40 @@ import json
 import streamlit as st
 import streamlit.components.v1 as components
 
+import streamlit as st
+import streamlit.components.v1 as components
+
 # ==========================================================
-# 🌐 ACTIVADOR DEL TRADUCTOR NATIVO DEL NAVEGADOR
+# 🌍 TRADUCTOR AUTOMÁTICO SIMULTÁNEO PARA LOS 20 ESTUDIANTES
 # ==========================================================
-# Esto configura la etiqueta del navegador para que el icono 
-# de la esquina superior derecha reconozca el texto y permita traducirlo al instante.
-traducton_browser_html = """
+# Este script inserta el widget oficial de Google Translate de forma oculta 
+# y fuerza la traducción automática al inglés para todos al instante.
+traducton_automatico_html = """
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'es', 
+    includedLanguages: 'en', 
+    autoDisplay: true
+  }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
-    const doc = window.parent.document;
-    doc.documentElement.lang = 'es';
+// Forzar la ejecución del selector de Google para que traduzca al cargar
+setTimeout(function() {
+    var selectField = document.querySelector("select.goog-te-combo");
+    if(selectField) {
+        selectField.value = "en";
+        selectField.dispatchEvent(new Event("change"));
+    }
+}, 1500);
 </script>
 """
-components.html(traducton_browser_html, height=10)
+
+# Se coloca al inicio para que cargue con la página
+components.html(traducton_automatico_html, height=0)
   
 st.set_page_config(page_title="Funciones Matemáticas", page_icon="📊", layout="centered")
 
