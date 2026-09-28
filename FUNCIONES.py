@@ -54,6 +54,54 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=8):
                 "enunciado": "Una máquina expendedora dispensa boletos que cuestan siempre 10 pesos, sin importar el horario de compra.",
                 "respuesta": "Función constante",
             },
+            {
+                "enunciado": "El costo de envío estándar para cualquier paquete dentro de la ciudad es de 45 pesos, sin importar su peso o tamaño.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "Una suscripción a una revista digital cuesta exactamente 150 pesos al mes, sin cargos adicionales por artículos especiales.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "La cuota de membresía de un gimnasio es plana e invariable de 600 pesos mensuales, sin importar las veces que se asista.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "El precio de entrada al cine local se mantiene fijo en 80 pesos todos los días de la semana, sin excepciones.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "Una multa de tránsito por mal estacionamiento tiene un monto único de 1,500 pesos, independiente de la zona de la infracción.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "El salario diario de un becario está fijado en 200 pesos netos, sin importar las horas extra trabajadas.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "El costo de almacenamiento en un servidor es de 50 pesos mensuales fijos, sin importar los gigabytes ocupados.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "Una beca escolar otorga un apoyo monetario constante de 1,000 pesos cada mes durante todo el ciclo lectivo.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "El cobro por la expedición de un certificado de estudios es una tarifa única y permanente de 120 pesos.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "La cuota de mantenimiento anual del fraccionamiento es de 2,400 pesos, sin variaciones por la ubicación de la casa.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "Un peaje en la carretera cobra una cuota fija de 35 pesos a todos los automóviles particulares que cruzan.",
+                "respuesta": "Función constante",
+            },
+            {
+                "enunciado": "La tarifa por el uso de una línea telefónica fija básica es de 199 pesos al mes, sin importar las llamadas locales realizadas.",
+                "respuesta": "Función constante",
+            },
         ],
         "Función lineal": [
             {
@@ -86,6 +134,54 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=8):
             },
             {
                 "enunciado": "La longitud de un resorte se estira 2 cm por cada kilogramo de peso adicional que se le cuelga.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "Una empresa de mudanzas cobra 500 pesos por el servicio básico más 50 pesos por cada piso que haya que subir.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "Un tanque de combustible comienza con 10 litros y recibe un suministro constante de 4 litros por minuto.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "El costo de producción de una fábrica de juguetes es de 30 pesos por pieza, con un costo fijo inicial de 0 pesos.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "Un servicio de streaming cobra un cargo fijo de 20 pesos más 5 pesos por cada película extra rentada.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "Una vela se consume a una tasa constante de 1.5 cm por cada hora que permanece encendida.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "Un técnico cobra 150 pesos por el diagnóstico a domicilio más 80 pesos por cada hora de reparación.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "El nivel del agua en un pozo sube 12 cm por cada hora de bombeo continuo.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "Una persona camina a una velocidad constante de 5 km por hora desde el parque central.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "La factura de electricidad incluye un cargo fijo de 40 pesos más 2 pesos por cada kilovatio-hora consumido.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "Un plan de telefonía móvil incluye 100 minutos base más 1.5 pesos por cada minuto adicional consumido.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "La temperatura de una sustancia aumenta de forma uniforme a razón de 3 grados Celsius por minuto.",
+                "respuesta": "Función lineal",
+            },
+            {
+                "enunciado": "Un vendedor recibe un sueldo base de 4,000 pesos más una comisión fija de 200 pesos por cada artículo vendido.",
                 "respuesta": "Función lineal",
             },
         ],
@@ -122,6 +218,54 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=8):
                 "enunciado": "La potencia eléctrica disipada en un circuito en función de la corriente se calcula mediante P(i) = 4i².",
                 "respuesta": "Función cuadrática",
             },
+            {
+                "enunciado": "El área de un terreno rectangular en función de su ancho x se modela mediante A(x) = x(15 - x).",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "La altura de un proyectil en función del tiempo está dada por la expresión h(t) = -4.9t² + 20t.",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "Los ingresos de una empresa por la venta de un producto a precio x se describen con I(x) = -3x² + 120x.",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "La trayectoria de un balón de fútbol al ser pateado se representa con f(x) = -0.1x² + 2x.",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "El costo total de producción de una empresa depende del número de lotes x según C(x) = 2x² - 10x + 50.",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "El área total de un cuadrado cuyo lado aumenta en 5 unidades se expresa como A(x) = (x + 5)².",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "La ganancia neta de una aerolínea en función del precio del boleto se modela con G(p) = -4p² + 240p - 1000.",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "El consumo de gasolina de un camión en función de su velocidad se rige por C(v) = 0.02v² - 1.5v + 80.",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "La potencia disipada en una resistencia en función de la corriente está dada por P(i) = 5i² + 2i.",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "El número de conexiones en una red en función de los nodos activos se modela mediante f(n) = n(n - 1) / 2.",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "La profundidad de un cráter en función de la distancia al centro se aproxima con d(x) = x² - 9.",
+                "respuesta": "Función cuadrática",
+            },
+            {
+                "enunciado": "El beneficio de una tienda depende de la inversión en publicidad x mediante la función B(x) = -x² + 14x - 24.",
+                "respuesta": "Función cuadrática",
+            },
         ],
         "Función cúbica": [
             {
@@ -154,6 +298,54 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=8):
             },
             {
                 "enunciado": "Una función de costos complejos para la fabricación en masa está dada por C(q) = q³ - 4q² + 20q + 150.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "El volumen de una caja con esquinas recortadas de tamaño x se modela con V(x) = x(10 - 2x)(15 - 2x).",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "El crecimiento del volumen de un globo esférico inflado uniformemente se relaciona con su radio mediante V(r) = (4/3)πr³.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "La ganancia acumulada de una corporación en sus primeros trimestres se modela con G(t) = t³ - 4t² + 5t.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "La deflexión de una estructura bajo carga cúbica se describe con D(x) = 2x³ - 6x.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "El costo de fabricar componentes a gran escala sigue la función polinómica C(x) = 0.5x³ - 3x² + 10x.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "El volumen de un contenedor cúbico especial se expresa como V(x) = (x + 2)³, donde x es la base inicial.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "El flujo de un líquido viscoso a través de un tubo depende del radio según Q(r) = 3r³ - r.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "La expansión térmica volumétrica de un polímero se rige por la fórmula V(T) = 0.1T³ + 2T.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "Una función de beneficio empresarial compleja se define por B(q) = q³ - 12q² + 36q.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "La variación de la altitud de una aeronave en una maniobra específica sigue f(t) = t³ - 3t² + 2.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "El comportamiento dinámico de un sistema mecánico se modela con la función polinómica S(x) = 4x³ - x.",
+                "respuesta": "Función cúbica",
+            },
+            {
+                "enunciado": "El volumen de una pirámide con base variable se describe mediante V(x) = (1/3)x³.",
                 "respuesta": "Función cúbica",
             },
         ],
@@ -190,6 +382,54 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=8):
                 "enunciado": "La razón de eficiencia de una máquina industrial se describe mediante E(x) = (100x - 5) / (x + 1).",
                 "respuesta": "Función racional",
             },
+            {
+                "enunciado": "El costo promedio por artículo de una producción se modela mediante C(x) = 500 / (x + 10).",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "La concentración de un fármaco en el cuerpo con respecto al tiempo se describe con f(t) = 100 / (t + 2).",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "El tiempo necesario para terminar una obra en función de la cantidad de obreros se rige por T(x) = 120 / x.",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "La velocidad promedio de un recorrido de distancia fija se calcula con v(t) = 300 / (t + 1).",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "La resistencia eléctrica en un circuito en paralelo se expresa como R(x) = 15x / (x + 5).",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "El porcentaje de pureza de una sustancia química mezclada se modela con P(t) = (50t + 10) / (t + 5).",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "La intensidad lumínica percibida a una distancia d se modela con I(d) = 1000 / d².",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "La eficiencia de una máquina industrial en función de las horas de uso se describe con E(x) = 100x / (x + 20).",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "El cociente entre los beneficios y los costos de una empresa se modela con R(x) = (200x + 50) / (x + 2).",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "La temperatura de enfriamiento de un líquido en un recipiente abierto sigue la función T(t) = 80 / (t + 1) + 20.",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "El promedio de puntos por partido de un jugador se modela con P(x) = (15x + 5) / x.",
+                "respuesta": "Función racional",
+            },
+            {
+                "enunciado": "La distorsión de una señal de audio se representa mediante S(x) = 50 / (x² + 4).",
+                "respuesta": "Función racional",
+            },
         ],
         "Función exponencial": [
             {
@@ -222,6 +462,54 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=8):
             },
             {
                 "enunciado": "Una reacción química duplica su velocidad de catálisis cada 10 grados de temperatura, modelada por V(T) = 2^(T/10).",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "Una población de insectos se triplica cada semana, modelándose con P(t) = 100·3^t.",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "El crecimiento de una inversión con interés compuesto anual se describe con A(t) = 5000·(1.06)^t.",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "La desintegración radiactiva de un isótopo sigue la fórmula M(t) = 1000·(0.5)^(t/5).",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "El número de descargas de una aplicación crece un 20% diario, modelado por D(d) = 200·(1.2)^d.",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "La presión atmosférica a distintas alturas se calcula con P(h) = 1000·e^(-0.15h).",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "La propagación de un virus informático en una red sigue la función V(t) = 50·2^t.",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "La depreciación anual de un automóvil se modela mediante el valor V(t) = 25000·(0.80)^t.",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "La cantidad de bacterias en un cultivo disminuye a la mitad cada 3 horas según C(t) = 400·(1/2)^(t/3).",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "El número de suscriptores de un canal de streaming crece exponencialmente con N(m) = 1000·(1.05)^m.",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "La intensidad de la luz que atraviesa capas de vidrio sucesivas se rige por I(x) = 100·(0.7)^x.",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "El aumento de la temperatura de un reactor químico se modela con T(t) = 25·e^(0.1t).",
+                "respuesta": "Función exponencial",
+            },
+            {
+                "enunciado": "La cantidad de energía liberada en una reacción nuclear sigue la función E(t) = 500·3^(0.5t).",
                 "respuesta": "Función exponencial",
             },
         ],
@@ -258,9 +546,56 @@ def generar_preguntas_identificacion(tipo_objetivo="Todos", cantidad=8):
                 "enunciado": "La ganancia o pérdida absoluta en la bolsa para un activo específico se describe por G(x) = |2x - 10|.",
                 "respuesta": "Función valor absoluto",
             },
+            {
+                "enunciado": "La desviación permitida en el corte de una placa metálica se describe con D(x) = |x - 5|.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "La distancia de un vehículo respecto a un poste de referencia se modela con d(t) = |2t - 10|.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "La variación de la temperatura ambiental respecto a los 20 grados ideales se representa con f(T) = |T - 20|.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "El error absoluto en la medición de una longitud se calcula mediante E(x) = |x - 100|.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "La ganancia o pérdida neta simétrica de un activo bursátil se modela con G(x) = |3x - 15|.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "La altura de un rebote simétrico de una pelota está dada por h(t) = -|t - 4| + 5.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "El costo adicional por exceder los límites de velocidad se modela con C(v) = 50|v - 80|.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "La posición simétrica de una partícula oscilante respecto al origen se describe con s(t) = |t - 6| - 2.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "El margen de tolerancia en el llenado de botellas de refresco se modela con M(x) = |x - 500|.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "La variación absoluta de la presión arterial durante un examen médico se modela con P(x) = |x - 120|.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "El costo de desvío de una ruta de transporte se calcula mediante C(x) = 20|x - 10|.",
+                "respuesta": "Función valor absoluto",
+            },
+            {
+                "enunciado": "La diferencia simétrica de dos variables relativas se representa mediante f(x) = |x + 3|.",
+                "respuesta": "Función valor absoluto",
+            },
         ]
     }
-
     # Función auxiliar para generar opciones incluyendo distractores
     def crear_opciones(respuesta_correcta):
         distractores = [tf for tf in TIPOS_FUNCION if tf != respuesta_correcta]
