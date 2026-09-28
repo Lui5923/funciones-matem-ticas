@@ -9,10 +9,6 @@ import json
 # ==========================================
 # 🌐 WIDGET DE GOOGLE TRANSLATE
 # ==========================================
-with st.sidebar:
-  st.markdown("Language Selector
-  components.html (google_translate_html, height=100)
-  st.markdown("---")  
 google_translate_html = """
 <div id="google_translate_element"></div>
 <script type="text/javascript">
@@ -25,7 +21,11 @@ function googleTranslateElementInit() {
 }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-"""    
+"""
+with st.sidebar:
+  st.markdown("Language Selector
+  components.html (google_translate_html, height=100)
+  st.markdown("---")  
   
 st.set_page_config(page_title="Funciones Matemáticas", page_icon="📊", layout="centered")
 
