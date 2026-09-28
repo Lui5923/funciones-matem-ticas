@@ -1126,7 +1126,7 @@ if st.session_state.vista == "desmos":
     calculator.setExpression({id: 'graph2', latex: 'y = a * x'});
     </script>
     """
-components.html(desmos_html (height=550), google_translate_html (height=100))
+components.html([desmos_html (height=550)], [google_translate_html (height=100)])
 st.markdown("---")  
   
 
