@@ -6,7 +6,6 @@ import streamlit.components.v1 as components
 import google.generativeai as genai
 import json
 
-language="English"
   
 st.set_page_config(page_title="Funciones Matemáticas", page_icon="📊", layout="centered")
 
