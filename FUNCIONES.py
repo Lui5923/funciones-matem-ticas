@@ -1127,7 +1127,7 @@ if st.session_state.vista == "desmos":
     </script>
     """
   components.html(google_translate_html, height=100)
-    st.markdown("---")  
+  st.markdown("---")  
   components.html(desmos_html, height=550)
   
 
