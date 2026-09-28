@@ -26,7 +26,7 @@ function googleTranslateElementInit() {
 # Lo colocas en la barra lateral para que aparezca limpio a un lado de tu app
 with st.sidebar:
     st.markdown("### 🌐 Language Selector")
-    components.html(google_translate_html, height=40)
+    components.html(google_translate_html, height=100)
     st.markdown("---")
     
 st.set_page_config(page_title="Funciones Matemáticas", page_icon="📊", layout="centered")
