@@ -10,7 +10,9 @@ import json
 # 🌐 WIDGET DE GOOGLE TRANSLATE
 # ==========================================
 with st.sidebar:
-  st.markdown("### 🌐 Language Selector")
+  st.markdown("### 🌐 Language Selector
+  components.html (google_translate_html, height=100)
+  st.markdown("---")  
 google_translate_html = """
 <div id="google_translate_element"></div>
 <script type="text/javascript">
@@ -1127,7 +1129,6 @@ if st.session_state.vista == "desmos":
     </script>
     """
 components.html(desmos_html, height=550)
-components.html (google_translate_html, height=100)
-st.markdown("---")  
+
   
 
