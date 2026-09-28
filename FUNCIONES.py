@@ -19,9 +19,9 @@ function googleTranslateElementInit() {
     layout: google.translate.TranslateElement.InlineLayout.SIMPLE
   }, 'google_translate_element');
 }
-</script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 """
+
 
 # Lo colocas en la barra lateral para que aparezca limpio a un lado de tu app
 with st.sidebar:
@@ -1132,4 +1132,6 @@ if st.session_state.vista == "desmos":
     """
     
     components.html(desmos_html, height=550)
+
+</script>
 
