@@ -9,6 +9,8 @@ import json
 # ==========================================
 # 🌐 WIDGET DE GOOGLE TRANSLATE
 # ==========================================
+with st.sidebar:
+  st.markdown("### 🌐 Language Selector")
 google_translate_html = """
 <div id="google_translate_element"></div>
 <script type="text/javascript">
@@ -21,10 +23,8 @@ function googleTranslateElementInit() {
 }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-"""
-
-
-    
+"""    
+  
 st.set_page_config(page_title="Funciones Matemáticas", page_icon="📊", layout="centered")
 
 TIPOS_FUNCION = [
@@ -1127,5 +1127,7 @@ if st.session_state.vista == "desmos":
     </script>
     """
     
-    components.html(desmos_html, height=550)
+  components.html(desmos_html, height=550)
+  components.html(google_translate_html, height=100)
+    st.markdown("---")
 
