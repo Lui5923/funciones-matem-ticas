@@ -1133,5 +1133,3 @@ if st.session_state.vista == "desmos":
     
     components.html(desmos_html, height=550)
 
-</script>
-
