@@ -1022,7 +1022,7 @@ elif st.session_state.view == "ai":
 
         if st.button("Generate with AI"):
             try:
-                genai.configure(api_key=st.secrets["GEMINI_API_KEY_2"])
+                genai.configure(api_key=st.secrets["GEMINI_API_KEY_3"])
                 model = genai.GenerativeModel("gemini-3-flash-preview")
 
                 prompt = (
